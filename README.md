@@ -108,7 +108,7 @@ Based in the example a css file like this will be generated:
 
 ### Using Yarn Workspaces
 
-This project utilizes Yarn Workspaces to manage multiple packages within a single repository. This allows us to house the module's source code and a demo in separate packages, streamlining development and testing.
+This project utilizes [Yarn Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) to manage multiple packages within a single repository. This allows us to house the module's source code and a demo in separate packages, streamlining development and testing.
 
 ### Package Structure
 
