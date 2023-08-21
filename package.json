@@ -1,0 +1,12 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w penpot-css-export",
+    "build": "npm run build -w penpot-css-export",
+    "demo": "npm run generate-css -w demo-svelte"
+  }
+}

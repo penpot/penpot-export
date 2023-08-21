@@ -1,0 +1,27 @@
+{
+  "name": "penpot-css-export",
+  "version": "0.0.0",
+  "license": "redradix",
+  "main": "dist/bin/index.js",
+  "types": "dist/lib/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "pce": "./dist/bin/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc-watch"
+  },
+  "dependencies": {
+    "node-fetch": "2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.0",
+    "@types/node-fetch": "2",
+    "ts-node": "^10.9.1",
+    "tsc-watch": "^6.0.4",
+    "typescript": "^5.1.6"
+  }
+}

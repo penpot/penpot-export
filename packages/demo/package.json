@@ -1,0 +1,14 @@
+{
+  "name": "demo",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "generate-css": "pce"
+  },
+  "dependencies": {
+    "penpot-css-export": "0.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1"
+  }
+}

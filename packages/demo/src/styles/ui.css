@@ -1,0 +1,47 @@
+.variables--h5 {
+  font-style: normal;
+  font-size: 18px;
+  font-weight: 800;
+  direction: ltr;
+  font-family: "Source Code Pro";
+}
+
+.variables--h4 {
+  font-style: normal;
+  font-size: 24px;
+  font-weight: 800;
+  direction: ltr;
+  font-family: "Source Code Pro";
+}
+
+.variables--h1 {
+  font-style: normal;
+  font-size: 72px;
+  font-weight: 900;
+  direction: ltr;
+  font-family: "Source Code Pro";
+}
+
+.variables--h5 {
+  font-style: normal;
+  font-size: 48px;
+  font-weight: 800;
+  direction: ltr;
+  font-family: "Source Code Pro";
+}
+
+.variables--body {
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 400;
+  direction: ltr;
+  font-family: "Source Code Pro";
+}
+
+.variables--h4 {
+  font-style: normal;
+  font-size: 36px;
+  font-weight: 800;
+  direction: ltr;
+  font-family: "Source Code Pro";
+}
