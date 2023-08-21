@@ -1,20 +1,13 @@
 import fetch, { RequestInit } from 'node-fetch'
 import { getObjectShapesFromPage, isComponent, pickObjectProps } from './helpers'
-import type { PenpotComponent, PenpotObject, PenpotPage } from './types'
-
-interface PenpotSettings {
-  accessToken: string
-}
-
-interface FetcherOptions {
-  command: string
-  body: Record<string, string>
-}
-
-interface PenpotGetPageOptions {
-  fileId: string
-  pageId: string
-}
+import type {
+  PenpotComponent,
+  PenpotObject,
+  PenpotPage,
+  PenpotSettings,
+  FetcherOptions,
+  PenpotGetPageOptions,
+} from './types'
 
 export class Penpot {
   private accessToken: string

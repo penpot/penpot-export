@@ -1,3 +1,17 @@
+export interface PenpotSettings {
+  accessToken: string
+}
+
+export interface FetcherOptions {
+  command: string
+  body: Record<string, string>
+}
+
+export interface PenpotGetPageOptions {
+  fileId: string
+  pageId: string
+}
+
 export interface PenpotObject {
   id: string
   name: string
