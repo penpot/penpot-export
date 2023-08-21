@@ -110,6 +110,10 @@ Based in the example a css file like this will be generated:
 
 This project utilizes [Yarn Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) to manage multiple packages within a single repository. This allows us to house the module's source code and a demo in separate packages, streamlining development and testing.
 
+> **Why Yarn Workspaces?**
+
+> _Your dependencies can be linked together, which means that your workspaces can depend on one another while always using the most up-to-date code available._ - [Reference](https://classic.yarnpkg.com/lang/en/docs/workspaces/#toc-why-would-you-want-to-do-this)
+
 ### Package Structure
 
 - [**packages/penpot-css-export**](./packages/penpot-css-export/): This package contains the CLI tool written in TypeScript. This is where the primary tool code resides.
