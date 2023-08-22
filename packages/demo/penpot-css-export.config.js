@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 /**
- * @type {import('./cli').PenpotExportConfig}
+ * @type {import('penpot-css-export').Config}
  */
 const config = {
   accessToken: process.env.PENPOT_ACCESS_TOKEN,
