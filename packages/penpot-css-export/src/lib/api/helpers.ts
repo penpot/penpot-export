@@ -4,7 +4,10 @@ export function isComponent(object: PenpotObject) {
   return object.componentRoot === true
 }
 
-export function getObjectShapesFromPage(object: PenpotObject, page: PenpotPage): PenpotComponent {
+export function getObjectShapesFromPage(
+  object: PenpotObject,
+  page: PenpotPage,
+): PenpotComponent {
   const objects: PenpotObject[] = []
   const shapes = object.shapes || []
 
@@ -22,7 +25,10 @@ export function getObjectShapesFromPage(object: PenpotObject, page: PenpotPage):
   return { ...object, objects }
 }
 
-export function pickObjectProps(reference: Record<string, string>, desiredProps: string[]) {
+export function pickObjectProps(
+  reference: Record<string, string>,
+  desiredProps: string[],
+) {
   const result: Record<string, string> = {}
 
   Object.keys(reference)

@@ -5,7 +5,10 @@ import { CSSClassDefinition, Config } from './types'
 import { writeCssFile } from './css'
 import path from 'path'
 
-export async function generateCssFromConfig(config: Config, rootProjectPath: string) {
+export async function generateCssFromConfig(
+  config: Config,
+  rootProjectPath: string,
+) {
   const validatedConfig = validateAndNormalizePenpotExportConfig(config)
   const penpot = new Penpot({ accessToken: config.accessToken })
 

@@ -2,15 +2,22 @@ import fs from 'fs'
 import { camelToKebab } from './string'
 import { CSSClassDefinition } from './types'
 
-export function cssClassDefinitionToCSS(cssClassDefinition: CSSClassDefinition): string {
+export function cssClassDefinitionToCSS(
+  cssClassDefinition: CSSClassDefinition,
+): string {
   const cssValidProps = Object.keys(cssClassDefinition.cssProps).map(
-    (key) => `  ${camelToKebab(key)}: ${cssClassDefinition.cssProps[key]};`
+    (key) => `  ${camelToKebab(key)}: ${cssClassDefinition.cssProps[key]};`,
   )
 
-  return [`.${cssClassDefinition.className} {`, ...cssValidProps, '}'].join('\n')
+  return [`.${cssClassDefinition.className} {`, ...cssValidProps, '}'].join(
+    '\n',
+  )
 }
 
-export function writeCssFile(path: string, cssClassDefinitions: CSSClassDefinition[]) {
+export function writeCssFile(
+  path: string,
+  cssClassDefinitions: CSSClassDefinition[],
+) {
   const css = cssClassDefinitions.map(cssClassDefinitionToCSS).join('\n\n')
   const pathDirs = path.trim().split('/')
   const dirname = pathDirs.slice(0, pathDirs.length - 1).join('/')

@@ -1,5 +1,9 @@
 import fetch, { RequestInit } from 'node-fetch'
-import { getObjectShapesFromPage, isComponent, pickObjectProps } from './helpers'
+import {
+  getObjectShapesFromPage,
+  isComponent,
+  pickObjectProps,
+} from './helpers'
 import type {
   PenpotComponent,
   PenpotObject,
@@ -16,7 +20,9 @@ export class Penpot {
     this.accessToken = settings.accessToken
   }
 
-  private async fetcher<ResultType>(options: FetcherOptions): Promise<ResultType> {
+  private async fetcher<ResultType>(
+    options: FetcherOptions,
+  ): Promise<ResultType> {
     const { command, body } = options
     const config: RequestInit = {
       headers: {
@@ -28,13 +34,18 @@ export class Penpot {
       body: JSON.stringify(body),
     }
 
-    const response = await fetch(`https://design.penpot.app/api/rpc/command/${command}`, config)
+    const response = await fetch(
+      `https://design.penpot.app/api/rpc/command/${command}`,
+      config,
+    )
     const json = await response.json()
 
     return json as ResultType
   }
 
-  async getPageComponents(options: PenpotGetPageOptions): Promise<{ pageName: string; components: PenpotComponent[] }> {
+  async getPageComponents(
+    options: PenpotGetPageOptions,
+  ): Promise<{ pageName: string; components: PenpotComponent[] }> {
     const page = await this.fetcher<PenpotPage>({
       command: 'get-page',
       body: {
@@ -63,7 +74,13 @@ export class Penpot {
   }
 
   static getTextObjectCssProps(object: PenpotObject) {
-    const textCssProps = ['fontStyle', 'fontSize', 'fontWeight', 'direction', 'fontFamily']
+    const textCssProps = [
+      'fontStyle',
+      'fontSize',
+      'fontWeight',
+      'direction',
+      'fontFamily',
+    ]
     const objectCssProps = Penpot.extractObjectCssProps(object)
 
     return pickObjectProps(objectCssProps, textCssProps)
