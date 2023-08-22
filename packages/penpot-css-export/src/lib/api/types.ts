@@ -12,6 +12,10 @@ export interface PenpotGetPageOptions {
   pageId: string
 }
 
+export interface PenpotGetFileOptions {
+  fileId: string
+}
+
 export interface PenpotObject {
   id: string
   name: string
@@ -21,9 +25,40 @@ export interface PenpotObject {
   shapes?: string[]
 }
 
+type CssTextProperty =
+  | 'lineHeight'
+  | 'fontStyle'
+  | 'textTransform'
+  | 'fontSize'
+  | 'fontWeight'
+  | 'letterSpacing'
+  | 'fontFamily'
+
+export type PenpotTypography = {
+  id: string
+  name: string
+  modifiedAt: string
+  path: string
+  fontId: string
+  fontVariantId: string
+} & Record<CssTextProperty, string>
+
 export interface PenpotPage {
   name: string
   objects: Record<string, PenpotObject>
+}
+
+export interface PenpotFile {
+  id: string
+  name: string
+  revn: number
+  modifiedAt: string
+  data: {
+    id: string
+    version: number
+    typographies: PenpotTypography[]
+    pages: PenpotPage[]
+  }
 }
 
 export interface PenpotApiErrorResponse {

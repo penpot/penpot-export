@@ -1,6 +1,6 @@
 import { Config, PagesConfig } from './types'
 
-const BASE_CONFIG: Omit<Config, 'pages'> = {
+const BASE_CONFIG: Omit<Config, 'pages' | 'typographies'> = {
   accessToken: '',
 }
 
@@ -43,25 +43,42 @@ export function validateAndNormalizePenpotExportConfig(config: Config): Config {
     ...BASE_CONFIG,
     ...config,
     pages: [],
+    typographies: [],
   }
 
+  for (const [index, typographiesConfig] of config.typographies.entries()) {
+    const { output, fileId } = typographiesConfig
 
-  for (const [index, page] of config.pages.entries()) {
-    if (!page.output) {
+    if (!output) {
       throw new MissingOutputPathError(index)
     }
 
-    if (!page.fileId) {
+    if (!fileId) {
       throw new MissingFileIdError(index)
     }
 
-    if (!page.pageId) {
+    normalizedConfig.typographies.push({
+      output,
+      fileId,
+    })
+  }
+
+  for (const [index, pageConfig] of config.pages.entries()) {
+    if (!pageConfig.output) {
+      throw new MissingOutputPathError(index)
+    }
+
+    if (!pageConfig.fileId) {
+      throw new MissingFileIdError(index)
+    }
+
+    if (!pageConfig.pageId) {
       throw new MissingPageIdError(index)
     }
 
     normalizedConfig.pages.push({
       ...PAGES_CONFIG,
-      ...page,
+      ...pageConfig,
     })
   }
 

@@ -12,6 +12,9 @@ import type {
   FetcherOptions,
   PenpotGetPageOptions,
   PenpotApiErrorResponse,
+  PenpotTypography,
+  PenpotGetFileOptions,
+  PenpotFile,
 } from './types'
 
 class PenpotApiError extends Error {
@@ -110,5 +113,36 @@ export class Penpot {
     const objectCssProps = Penpot.extractObjectCssProps(object)
 
     return pickObjectProps(objectCssProps, textCssProps)
+  }
+
+  async getFileTypographies(
+    options: PenpotGetFileOptions,
+  ): Promise<{ fileName: string; typographies: PenpotTypography[] }> {
+    const file = await this.fetcher<PenpotFile>({
+      command: 'get-file',
+      body: {
+        id: options.fileId,
+      },
+    })
+    const typographies = Object.values(file.data.typographies)
+
+    return { fileName: file.name, typographies }
+  }
+
+  static getTypographyAssetCssProps(typography: PenpotTypography) {
+    const textCssProps = [
+      'lineHeight',
+      'fontStyle',
+      'textTransform',
+      'fontWeight',
+      'direction',
+    ]
+
+    return {
+      ...pickObjectProps(typography, textCssProps),
+      fontSize: `${typography.fontSize}px`,
+      letterSpacing: `${typography.letterSpacing}px`,
+      fontFamily: `"${typography.fontFamily}"`,
+    }
   }
 }
