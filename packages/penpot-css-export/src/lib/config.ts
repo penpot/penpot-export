@@ -1,8 +1,7 @@
 import { Config, PagesConfig } from './types'
 
-const CONFIG: Config = {
+const BASE_CONFIG: Omit<Config, 'pages'> = {
   accessToken: '',
-  pages: [],
 }
 
 const PAGES_CONFIG: PagesConfig = {
@@ -40,7 +39,12 @@ export function validateAndNormalizePenpotExportConfig(config: Config): Config {
     throw new MissingAccessTokenError()
   }
 
-  let normalizedConfig: Config = { ...CONFIG, ...config, pages: [] }
+  let normalizedConfig: Config = {
+    ...BASE_CONFIG,
+    ...config,
+    pages: [],
+  }
+
 
   for (const [index, page] of config.pages.entries()) {
     if (!page.output) {
