@@ -1,7 +1,7 @@
 {
   "name": "penpot-css-export",
   "version": "0.0.0",
-  "license": "redradix",
+  "license": "UNLICENSED",
   "main": "dist/bin/index.js",
   "types": "dist/lib/types.d.ts",
   "files": [
