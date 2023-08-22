@@ -12,6 +12,28 @@ export async function generateCssFromConfig(
   const validatedConfig = validateAndNormalizePenpotExportConfig(config)
   const penpot = new Penpot({ accessToken: config.accessToken })
 
+  for (const typographiesConfig of validatedConfig.typographies) {
+    const cssClassDefinitions: CSSClassDefinition[] = []
+
+    const { fileName, typographies } = await penpot.getFileTypographies({
+      fileId: typographiesConfig.fileId,
+    })
+    const fileClassname = textToValidClassname(fileName)
+
+    for (const typography of typographies) {
+      const cssProps = Penpot.getTypographyAssetCssProps(typography)
+      const objectClassname = textToValidClassname(typography.name)
+      const className = `${fileClassname}--${objectClassname}`
+      cssClassDefinitions.push({ className, cssProps })
+    }
+
+    const cssPath = path.resolve(rootProjectPath, typographiesConfig.output)
+
+    writeCssFile(cssPath, cssClassDefinitions)
+
+    console.log('✅ Typographies: %s', typographiesConfig.output)
+  }
+
   for (const page of validatedConfig.pages) {
     const cssClassDefinitions: CSSClassDefinition[] = []
 
@@ -36,6 +58,6 @@ export async function generateCssFromConfig(
 
     writeCssFile(cssPath, cssClassDefinitions)
 
-    console.log('✅ %s', page.output)
+    console.log('✅ Page components: %s', page.output)
   }
 }
