@@ -26,4 +26,9 @@ export interface PenpotPage {
   objects: Record<string, PenpotObject>
 }
 
+export interface PenpotApiErrorResponse {
+  type: string
+  code: string
+}
+
 export type PenpotComponent = PenpotObject & { objects: PenpotObject[] }

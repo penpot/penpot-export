@@ -11,7 +11,22 @@ import type {
   PenpotSettings,
   FetcherOptions,
   PenpotGetPageOptions,
+  PenpotApiErrorResponse,
 } from './types'
+
+class PenpotApiError extends Error {
+  constructor(parsedError: PenpotApiErrorResponse) {
+    super(
+      `Penpot API call failed: error type "${parsedError.type}" with code "${parsedError.code}".`,
+    )
+  }
+}
+
+class PenpotApiUnknownError extends Error {
+  constructor() {
+    super('Unknown Penpot API error.')
+  }
+}
 
 export class Penpot {
   private accessToken: string
@@ -38,6 +53,17 @@ export class Penpot {
       `https://design.penpot.app/api/rpc/command/${command}`,
       config,
     )
+
+    if (!response.ok) {
+      const error = await response
+        .clone()
+        .json()
+        .then((parsedError) => new PenpotApiError(parsedError))
+        .catch(() => new PenpotApiUnknownError())
+
+      throw error
+    }
+
     const json = await response.json()
 
     return json as ResultType
