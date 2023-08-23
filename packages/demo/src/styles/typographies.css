@@ -1,0 +1,59 @@
+.easyfest__design_system___landing_page--___title_medium {
+  line-height: 1.2000000000000002;
+  font-style: normal;
+  text-transform: none;
+  font-weight: 700;
+  font-size: 54px;
+  letter-spacing: 0px;
+  font-family: "Work Sans";
+}
+
+.easyfest__design_system___landing_page--___title_large {
+  line-height: 1;
+  font-style: normal;
+  text-transform: none;
+  font-weight: 700;
+  font-size: 85px;
+  letter-spacing: 0px;
+  font-family: "Work Sans";
+}
+
+.easyfest__design_system___landing_page--body_large {
+  line-height: 1.2;
+  font-style: normal;
+  text-transform: none;
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: 0px;
+  font-family: "Work Sans";
+}
+
+.easyfest__design_system___landing_page--___title_small {
+  line-height: 1.2000000000000002;
+  font-style: normal;
+  text-transform: none;
+  font-weight: 700;
+  font-size: 35px;
+  letter-spacing: 0px;
+  font-family: "Work Sans";
+}
+
+.easyfest__design_system___landing_page--body_small {
+  line-height: 1.2;
+  font-style: normal;
+  text-transform: none;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0px;
+  font-family: "Work Sans";
+}
+
+.easyfest__design_system___landing_page--body_medium {
+  line-height: 1.2;
+  font-style: normal;
+  text-transform: none;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0px;
+  font-family: "Work Sans";
+}
