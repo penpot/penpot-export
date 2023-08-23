@@ -21,6 +21,8 @@ export async function generateCssFromConfig(
     const fileClassname = textToValidClassname(fileName)
 
     for (const typography of typographies) {
+      if (typography.path === '📱Title') continue // FIXME Conflicting emoji names
+
       const cssProps = Penpot.getTypographyAssetCssProps(typography)
       const objectClassname = textToValidClassname(typography.name)
       const className = `${fileClassname}--${objectClassname}`
