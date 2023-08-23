@@ -25,6 +25,18 @@ export interface PenpotObject {
   shapes?: string[]
 }
 
+type PenpotAsset = {
+  id: string
+  name: string
+  modifiedAt: string
+  path: string
+}
+
+export interface PenpotColor extends PenpotAsset {
+  color: string
+  opacity: number
+}
+
 type CssTextProperty =
   | 'lineHeight'
   | 'fontStyle'
@@ -34,11 +46,7 @@ type CssTextProperty =
   | 'letterSpacing'
   | 'fontFamily'
 
-export type PenpotTypography = {
-  id: string
-  name: string
-  modifiedAt: string
-  path: string
+export type PenpotTypography = PenpotAsset & {
   fontId: string
   fontVariantId: string
 } & Record<CssTextProperty, string>
@@ -56,6 +64,7 @@ export interface PenpotFile {
   data: {
     id: string
     version: number
+    colors: PenpotColor[]
     typographies: PenpotTypography[]
     pages: PenpotPage[]
   }

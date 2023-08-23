@@ -61,6 +61,24 @@ export function textToCssClassSelector(str: string) {
   return '.' + ident
 }
 
+/** From: https://www.w3.org/TR/css-variables-1/#custom-property
+ * A custom property is any property whose name starts with two dashes (U+002D HYPHEN-MINUS), like --foo. The
+ * <custom-property-name> production corresponds to this: it’s defined as any <dashed-ident> (a valid identifier that
+ * starts with two dashes), except -- itself, which is reserved for future use by CSS.
+ *
+ * The <dashed-ident> production is a <custom-ident>, with all the case-sensitivity that implies, with the additional
+ * restriction that it must start with two dashes (U+002D HYPHEN-MINUS).
+ *
+ * 	This generic data type is denoted by <custom-ident>, and represents any valid CSS identifier that would not be
+ * misinterpreted as a pre-defined keyword in that property’s value definition. Such identifiers are fully
+ * case-sensitive (meaning they’re compared using the "identical to" operation), even in the ASCII range (e.g. example
+ * and EXAMPLE are two different, unrelated user-defined identifiers).
+ */
+export function textToCssCustomProperyName(str: string) {
+  const unescapedDashedIdentifier = '--' + str.trimStart()
+  return textToCssIdentToken(unescapedDashedIdentifier)
+}
+
 export function cssClassDefinitionToCSS(
   cssClassDefinition: CSSClassDefinition,
 ): string {

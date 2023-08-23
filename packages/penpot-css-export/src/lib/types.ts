@@ -9,8 +9,14 @@ export interface TypographiesConfig {
   fileId: string
 }
 
+export interface ColorsConfig {
+  output: string
+  fileId: string
+}
+
 export interface Config {
   accessToken: string
+  colors: ColorsConfig[]
   typographies: TypographiesConfig[]
   pages: PagesConfig[]
 }
