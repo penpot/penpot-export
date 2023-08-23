@@ -1,7 +1,11 @@
 import Penpot from '../lib/api'
 import { validateAndNormalizePenpotExportConfig } from './config'
 import { CSSClassDefinition, Config } from './types'
-import { textToCssClassSelector, writeCssFile } from './css'
+import {
+  textToCssClassSelector,
+  textToCssCustomProperyName,
+  writeCssFile,
+} from './css'
 import path from 'path'
 
 export async function generateCssFromConfig(
@@ -10,6 +14,28 @@ export async function generateCssFromConfig(
 ) {
   const validatedConfig = validateAndNormalizePenpotExportConfig(config)
   const penpot = new Penpot({ accessToken: config.accessToken })
+
+  for (const colorsConfig of validatedConfig.colors) {
+    const cssClassDefinition: CSSClassDefinition = {
+      selector: ':root',
+      cssProps: {},
+    }
+
+    const { colors } = await penpot.getFileColors({
+      fileId: colorsConfig.fileId,
+    })
+
+    for (const color of colors) {
+      const objectClassname = textToCssCustomProperyName(color.name)
+      cssClassDefinition.cssProps[objectClassname] = color.color // FIXME Add opacity with rgba()
+    }
+
+    const cssPath = path.resolve(rootProjectPath, colorsConfig.output)
+
+    writeCssFile(cssPath, [cssClassDefinition])
+
+    console.log('✅ Colors: %s', colorsConfig.output)
+  }
 
   for (const typographiesConfig of validatedConfig.typographies) {
     const cssClassDefinitions: CSSClassDefinition[] = []

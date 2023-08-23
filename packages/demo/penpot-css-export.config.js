@@ -5,6 +5,12 @@ require('dotenv').config()
  */
 const config = {
   accessToken: process.env.PENPOT_ACCESS_TOKEN,
+  colors: [
+    {
+      output: 'src/styles/colors.css', // 👈🏻 Path where your css should be generated.
+      fileId: '4a499800-872e-80e1-8002-fc0b585dc061'
+    },
+  ],
   typographies: [
     {
       output: 'src/styles/typographies.css', // 👈🏻 Path where your css should be generated.

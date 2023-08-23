@@ -15,6 +15,7 @@ import type {
   PenpotTypography,
   PenpotGetFileOptions,
   PenpotFile,
+  PenpotColor,
 } from './types'
 
 class PenpotApiError extends Error {
@@ -144,5 +145,19 @@ export class Penpot {
       letterSpacing: `${typography.letterSpacing}px`,
       fontFamily: `"${typography.fontFamily}"`,
     }
+  }
+
+  async getFileColors(
+    options: PenpotGetFileOptions,
+  ): Promise<{ fileName: string; colors: PenpotColor[] }> {
+    const file = await this.fetcher<PenpotFile>({
+      command: 'get-file',
+      body: {
+        id: options.fileId,
+      },
+    })
+    const colors = Object.values(file.data.colors)
+
+    return { fileName: file.name, colors }
   }
 }
