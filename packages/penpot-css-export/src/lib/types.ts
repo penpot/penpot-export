@@ -16,6 +16,6 @@ export interface Config {
 }
 
 export interface CSSClassDefinition {
-  className: string
+  selector: string
   cssProps: Record<string, string>
 }

@@ -2,6 +2,65 @@ import fs from 'fs'
 import { camelToKebab } from './string'
 import { CSSClassDefinition } from './types'
 
+/** From: https://www.w3.org/TR/css-syntax-3/#escaping
+ * Any Unicode code point can be included in an ident sequence or quoted string by escaping it. CSS escape sequences
+ * start with a backslash (\), and continue with:
+ * - Any Unicode code point that is not a hex digits or a newline. The escape sequence is replaced by that code point.
+ * - Or one to six hex digits, followed by an optional whitespace. The escape sequence is replaced by the Unicode code
+ *   point whose value is given by the hexadecimal digits. This optional whitespace allow hexadecimal escape sequences
+ *   to be followed by "real" hex digits.
+ */
+function escapeCssCharacter(char: string) {
+  return '\\' + char
+}
+
+/** From: https://www.w3.org/TR/css-syntax-3/#syntax-description:
+ * Property names and at-rule names are always ident sequences, which have to start with an ident-start code point,
+ * two hyphens, or a hyphen followed by an ident-start code point, and then can contain zero or more ident code points.
+ * You can include any code point at all, even ones that CSS uses in its syntax, by escaping it.
+ *
+ * Railroad diagram: https://www.w3.org/TR/css-syntax-3/#ident-token-diagram
+ *
+ * ident-start code point:  A letter, a non-ASCII code point, or U+005F LOW LINE (_).
+ * ident code point:        An ident-start code point, a digit, or U+002D HYPHEN-MINUS (-).
+ * digit:                   A code point between U+0030 DIGIT ZERO (0) and U+0039 DIGIT NINE (9) inclusive.
+ * letter:                  An uppercase letter or a lowercase letter.
+ * non-ASCII code point:    A code point with a value equal to or greater than U+0080 <control>.
+ */
+function textToCssIdentToken(str: string) {
+  const normalizedString = str.trim().replace(/\s/g, '_')
+
+  const escapedString = normalizedString
+    .replace(
+      // NOTE All ASCII printable characters except -, 0-9, A-Z, _, a-z
+      /[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~]/g,
+      escapeCssCharacter,
+    )
+    .replace(
+      /^(-?)([0-9])/,
+      (match: string, dashGroup: string, numberGroup: string) =>
+        dashGroup + escapeCssCharacter(numberGroup),
+    )
+
+  return escapedString
+}
+
+/** From: https://www.w3.org/TR/selectors-3/#w3cselgrammar
+ * class
+ * : '.' IDENT
+ * ;
+ *
+ * Tokenizer (Flex notation)
+ * ident     [-]?{nmstart}{nmchar}*
+ * nmstart   [_a-z]|{nonascii}|{escape}
+ * nmchar    [_a-z0-9-]|{nonascii}|{escape}
+ * nonascii  [^\0-\177]
+ */
+export function textToCssClassSelector(str: string) {
+  const ident = textToCssIdentToken(str)
+  return '.' + ident
+}
+
 export function cssClassDefinitionToCSS(
   cssClassDefinition: CSSClassDefinition,
 ): string {
@@ -9,9 +68,7 @@ export function cssClassDefinitionToCSS(
     (key) => `  ${camelToKebab(key)}: ${cssClassDefinition.cssProps[key]};`,
   )
 
-  return [`.${cssClassDefinition.className} {`, ...cssValidProps, '}'].join(
-    '\n',
-  )
+  return [`${cssClassDefinition.selector} {`, ...cssValidProps, '}'].join('\n')
 }
 
 export function writeCssFile(
