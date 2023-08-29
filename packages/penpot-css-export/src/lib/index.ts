@@ -1,8 +1,7 @@
 import Penpot from '../lib/api'
-import { textToValidClassname } from './string'
 import { validateAndNormalizePenpotExportConfig } from './config'
 import { CSSClassDefinition, Config } from './types'
-import { writeCssFile } from './css'
+import { textToCssClassSelector, writeCssFile } from './css'
 import path from 'path'
 
 export async function generateCssFromConfig(
@@ -18,15 +17,11 @@ export async function generateCssFromConfig(
     const { fileName, typographies } = await penpot.getFileTypographies({
       fileId: typographiesConfig.fileId,
     })
-    const fileClassname = textToValidClassname(fileName)
 
     for (const typography of typographies) {
-      if (typography.path === '📱Title') continue // FIXME Conflicting emoji names
-
       const cssProps = Penpot.getTypographyAssetCssProps(typography)
-      const objectClassname = textToValidClassname(typography.name)
-      const className = `${fileClassname}--${objectClassname}`
-      cssClassDefinitions.push({ className, cssProps })
+      const selector = textToCssClassSelector(`${fileName}--${typography.name}`)
+      cssClassDefinitions.push({ selector, cssProps })
     }
 
     const cssPath = path.resolve(rootProjectPath, typographiesConfig.output)
@@ -43,15 +38,13 @@ export async function generateCssFromConfig(
       fileId: page.fileId,
       pageId: page.pageId,
     })
-    const pageClassname = textToValidClassname(pageName)
 
     for (const component of components) {
       for (const object of component.objects) {
         if (object.type === 'text') {
           const cssProps = Penpot.getTextObjectCssProps(object)
-          const objectClassname = textToValidClassname(object.name)
-          const className = `${pageClassname}--${objectClassname}`
-          cssClassDefinitions.push({ className, cssProps })
+          const selector = textToCssClassSelector(`${pageName}--${object.name}`)
+          cssClassDefinitions.push({ selector, cssProps })
         }
       }
     }
