@@ -8,11 +8,6 @@ export interface FetcherOptions {
   body: Record<string, string>
 }
 
-export interface PenpotGetPageOptions {
-  fileId: string
-  pageId: string
-}
-
 export interface PenpotGetFileOptions {
   fileId: string
 }
@@ -53,6 +48,7 @@ export type PenpotTypography = PenpotAsset & {
 } & Record<CssTextProperty, string>
 
 export interface PenpotPage {
+  id: string
   name: string
   objects: Record<string, PenpotObject>
 }
@@ -65,9 +61,9 @@ export interface PenpotFile {
   data: {
     id: string
     version: number
-    colors: PenpotColor[]
-    typographies: PenpotTypography[]
-    pages: PenpotPage[]
+    colors?: Record<string, PenpotColor>
+    typographies?: Record<string, PenpotTypography>
+    pagesIndex?: Record<string, PenpotPage>
   }
 }
 

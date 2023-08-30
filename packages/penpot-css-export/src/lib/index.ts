@@ -7,6 +7,7 @@ import {
   writeCssFile,
 } from './css'
 import path from 'path'
+import { getObjectShapesFromPage, isComponent } from './api/helpers'
 
 export async function generateCssFromConfig(
   userConfig: object,
@@ -33,7 +34,8 @@ export async function generateCssFromConfig(
 
       const { colors } = penpotFile
 
-      for (const color of colors) {
+      for (const colorId in colors) {
+        const color = colors[colorId]
         const objectClassname = textToCssCustomProperyName(color.name)
         cssClassDefinition.cssProps[objectClassname] = color.color // FIXME Add opacity with rgba()
       }
@@ -50,7 +52,8 @@ export async function generateCssFromConfig(
 
       const { fileName, typographies } = penpotFile
 
-      for (const typography of typographies) {
+      for (const typographyId in typographies) {
+        const typography = typographies[typographyId]
         const cssProps = Penpot.getTypographyAssetCssProps(typography)
         const selector = textToCssClassSelector(
           `${fileName}--${typography.name}`,
@@ -68,17 +71,18 @@ export async function generateCssFromConfig(
     for (const pagesConfig of fileConfig.pages) {
       const cssClassDefinitions: CSSClassDefinition[] = []
 
-      const { pageName, components } = await penpot.getPageComponents({
-        fileId: fileConfig.fileId,
-        pageId: pagesConfig.pageId,
-      })
+      const page = penpotFile.pages[pagesConfig.pageId]
+
+      const components = Object.values(page.objects)
+        .filter(isComponent)
+        .map((object) => getObjectShapesFromPage(object, page))
 
       for (const component of components) {
         for (const object of component.objects) {
           if (object.type === 'text') {
             const cssProps = Penpot.getTextObjectCssProps(object)
             const selector = textToCssClassSelector(
-              `${pageName}--${object.name}`,
+              `${page.name}--${object.name}`,
             )
             cssClassDefinitions.push({ selector, cssProps })
           }

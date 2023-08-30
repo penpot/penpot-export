@@ -1,16 +1,10 @@
 import fetch, { RequestInit } from 'node-fetch'
-import {
-  getObjectShapesFromPage,
-  isComponent,
-  pickObjectProps,
-} from './helpers'
+import { pickObjectProps } from './helpers'
 import type {
-  PenpotComponent,
   PenpotObject,
   PenpotPage,
   PenpotSettings,
   FetcherOptions,
-  PenpotGetPageOptions,
   PenpotApiErrorResponse,
   PenpotTypography,
   PenpotGetFileOptions,
@@ -75,23 +69,6 @@ export class Penpot {
     return json as ResultType
   }
 
-  async getPageComponents(
-    options: PenpotGetPageOptions,
-  ): Promise<{ pageName: string; components: PenpotComponent[] }> {
-    const page = await this.fetcher<PenpotPage>({
-      command: 'get-page',
-      body: {
-        fileId: options.fileId,
-        pageId: options.pageId,
-      },
-    })
-    const components = Object.values(page.objects)
-      .filter(isComponent)
-      .map((object) => getObjectShapesFromPage(object, page))
-
-    return { pageName: page.name, components }
-  }
-
   static extractObjectCssProps(object: PenpotObject) {
     let { textDecoration, ...styles } = object.positionData[0]
     const isTextObject = object.type === 'text'
@@ -120,8 +97,9 @@ export class Penpot {
 
   async getFile(options: PenpotGetFileOptions): Promise<{
     fileName: string
-    colors: PenpotColor[]
-    typographies: PenpotTypography[]
+    colors: Record<string, PenpotColor>
+    typographies: Record<string, PenpotTypography>
+    pages: Record<string, PenpotPage>
   }> {
     const file = await this.fetcher<PenpotFile>({
       command: 'get-file',
@@ -129,12 +107,13 @@ export class Penpot {
         id: options.fileId,
       },
     })
-    const colors = file.data.colors ? Object.values(file.data.colors) : []
-    const typographies = file.data.typographies
-      ? Object.values(file.data.typographies)
-      : []
 
-    return { fileName: file.name, colors, typographies }
+    return {
+      fileName: file.name,
+      colors: file.data.colors ?? {},
+      typographies: file.data.typographies ?? {},
+      pages: file.data.pagesIndex ?? {},
+    }
   }
 
   static getTypographyAssetCssProps(typography: PenpotTypography) {
