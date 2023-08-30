@@ -1,4 +1,5 @@
 export interface PenpotSettings {
+  baseUrl: string
   accessToken: string
 }
 

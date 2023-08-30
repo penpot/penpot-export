@@ -13,7 +13,10 @@ export async function generateCssFromConfig(
   rootProjectPath: string,
 ) {
   const validatedConfig = validateAndNormalizePenpotExportConfig(config)
-  const penpot = new Penpot({ accessToken: config.accessToken })
+  const penpot = new Penpot({
+    baseUrl: validatedConfig.instance,
+    accessToken: validatedConfig.accessToken,
+  })
 
   for (const colorsConfig of validatedConfig.colors) {
     const cssClassDefinition: CSSClassDefinition = {

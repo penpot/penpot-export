@@ -1,6 +1,7 @@
 import { Config, PagesConfig } from './types'
 
 const BASE_CONFIG: Omit<Config, 'pages' | 'typographies' | 'colors'> = {
+  instance: 'https://design.penpot.app',
   accessToken: '',
 }
 
@@ -13,6 +14,12 @@ const PAGES_CONFIG: PagesConfig = {
 class MissingAccessTokenError extends Error {
   constructor() {
     super('Missing or empty .accessToken in penpot export config.')
+  }
+}
+
+class InvalidInstanceUrlError extends Error {
+  constructor() {
+    super('Invalid .instance URL in penpot export config.')
   }
 }
 
@@ -45,6 +52,22 @@ export function validateAndNormalizePenpotExportConfig(config: Config): Config {
     pages: [],
     typographies: [],
     colors: [],
+  }
+
+  if (config.instance != null) {
+    try {
+      new URL(config.instance)
+    } catch (error) {
+      if (error instanceof TypeError) {
+        throw new InvalidInstanceUrlError()
+      }
+
+      throw error
+    }
+
+    normalizedConfig.instance = config.instance.endsWith('/')
+      ? config.instance.slice(0, -1)
+      : config.instance
   }
 
   for (const [index, colorsConfig] of config.colors.entries()) {

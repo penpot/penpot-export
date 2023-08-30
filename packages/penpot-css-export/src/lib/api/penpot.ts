@@ -33,9 +33,11 @@ class PenpotApiUnknownError extends Error {
 }
 
 export class Penpot {
+  private instanceBaseUrl: string
   private accessToken: string
 
   constructor(settings: PenpotSettings) {
+    this.instanceBaseUrl = settings.baseUrl
     this.accessToken = settings.accessToken
   }
 
@@ -54,7 +56,7 @@ export class Penpot {
     }
 
     const response = await fetch(
-      `https://design.penpot.app/api/rpc/command/${command}`,
+      `${this.instanceBaseUrl}/api/rpc/command/${command}`,
       config,
     )
 

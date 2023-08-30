@@ -15,6 +15,7 @@ export interface ColorsConfig {
 }
 
 export interface Config {
+  instance: string
   accessToken: string
   colors: ColorsConfig[]
   typographies: TypographiesConfig[]

@@ -29,6 +29,7 @@ require('dotenv').config()
  * @type {import('penpot-css-export').Config}
  */
 const config = {
+  instance: process.env.PENPOT_BASE_URL || undefined,
   accessToken: process.env.PENPOT_ACCESS_TOKEN,
   pages: [
     {
