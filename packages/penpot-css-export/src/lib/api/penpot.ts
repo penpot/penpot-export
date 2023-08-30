@@ -118,18 +118,23 @@ export class Penpot {
     return pickObjectProps(objectCssProps, textCssProps)
   }
 
-  async getFileTypographies(
-    options: PenpotGetFileOptions,
-  ): Promise<{ fileName: string; typographies: PenpotTypography[] }> {
+  async getFile(options: PenpotGetFileOptions): Promise<{
+    fileName: string
+    colors: PenpotColor[]
+    typographies: PenpotTypography[]
+  }> {
     const file = await this.fetcher<PenpotFile>({
       command: 'get-file',
       body: {
         id: options.fileId,
       },
     })
-    const typographies = Object.values(file.data.typographies)
+    const colors = file.data.colors ? Object.values(file.data.colors) : []
+    const typographies = file.data.typographies
+      ? Object.values(file.data.typographies)
+      : []
 
-    return { fileName: file.name, typographies }
+    return { fileName: file.name, colors, typographies }
   }
 
   static getTypographyAssetCssProps(typography: PenpotTypography) {
@@ -147,19 +152,5 @@ export class Penpot {
       letterSpacing: `${typography.letterSpacing}px`,
       fontFamily: `"${typography.fontFamily}"`,
     }
-  }
-
-  async getFileColors(
-    options: PenpotGetFileOptions,
-  ): Promise<{ fileName: string; colors: PenpotColor[] }> {
-    const file = await this.fetcher<PenpotFile>({
-      command: 'get-file',
-      body: {
-        id: options.fileId,
-      },
-    })
-    const colors = Object.values(file.data.colors)
-
-    return { fileName: file.name, colors }
   }
 }
