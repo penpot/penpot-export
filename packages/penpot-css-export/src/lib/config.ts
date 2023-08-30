@@ -1,127 +1,158 @@
-import { Config, PagesConfig } from './types'
+import { Config, PagesConfig, FileConfig } from './types'
 
-const BASE_CONFIG: Omit<Config, 'pages' | 'typographies' | 'colors'> = {
-  instance: 'https://design.penpot.app',
-  accessToken: '',
-}
-
-const PAGES_CONFIG: PagesConfig = {
-  output: '',
+const createBaseFileConfig = (): FileConfig => ({
   fileId: '',
-  pageId: '',
-}
+  colors: [],
+  typographies: [],
+  pages: [],
+})
 
-class MissingAccessTokenError extends Error {
+const createBasePagesConfig = (): PagesConfig => ({
+  output: '',
+  pageId: '',
+})
+
+class FileIdConfigError extends Error {
   constructor() {
-    super('Missing or empty .accessToken in penpot export config.')
+    super(`Missing or invalid .fileId in penpot export config.`)
   }
 }
 
-class InvalidInstanceUrlError extends Error {
+class OutputPathConfigError extends Error {
+  constructor(index: number) {
+    super(`Missing or invalid .path in penpot export config at index ${index}.`)
+  }
+}
+
+class PageIdConfigError extends Error {
+  constructor(index: number) {
+    super(
+      `Missing or invalid .pageId in penpot export config at index ${index}.`,
+    )
+  }
+}
+
+function validateAndNormalizePenpotExportFileConfig(
+  userConfig: object,
+): FileConfig {
+  const normalizedConfig = createBaseFileConfig()
+
+  if ('fileId' in userConfig && typeof userConfig.fileId === 'string') {
+    normalizedConfig.fileId = userConfig.fileId
+  } else throw new FileIdConfigError()
+
+  if ('colors' in userConfig && Array.isArray(userConfig.colors)) {
+    normalizedConfig.colors = userConfig.colors.map(
+      (colorsConfig: object, index) => {
+        if (
+          'output' in colorsConfig &&
+          typeof colorsConfig.output === 'string'
+        ) {
+          return {
+            output: colorsConfig.output,
+          }
+        } else throw new OutputPathConfigError(index)
+      },
+    )
+  }
+
+  if ('typographies' in userConfig && Array.isArray(userConfig.typographies)) {
+    normalizedConfig.typographies = userConfig.typographies.map(
+      (typographiesConfig: object, index) => {
+        if (
+          'output' in typographiesConfig &&
+          typeof typographiesConfig.output === 'string'
+        ) {
+          return {
+            output: typographiesConfig.output,
+          }
+        } else throw new OutputPathConfigError(index)
+      },
+    )
+  }
+
+  if ('pages' in userConfig && Array.isArray(userConfig.pages)) {
+    normalizedConfig.pages = userConfig.pages.map(
+      (pageConfig: object, index) => {
+        const normalizedPageConfig = createBasePagesConfig()
+
+        if ('output' in pageConfig && typeof pageConfig.output === 'string') {
+          normalizedPageConfig.output = pageConfig.output
+        } else throw new OutputPathConfigError(index)
+
+        if ('pageId' in pageConfig && typeof pageConfig.pageId === 'string') {
+          normalizedPageConfig.pageId = pageConfig.pageId
+        } else throw new PageIdConfigError(index)
+
+        return normalizedPageConfig
+      },
+    )
+  }
+
+  return normalizedConfig
+}
+
+const createBaseConfig = (): Config => ({
+  instance: 'https://design.penpot.app',
+  accessToken: '',
+  files: [],
+})
+
+class AccessTokenConfigError extends Error {
+  constructor() {
+    super('Missing or invalid .accessToken in penpot export config.')
+  }
+}
+
+class InvalidInstanceUrlConfigError extends Error {
   constructor() {
     super('Invalid .instance URL in penpot export config.')
   }
 }
 
-class MissingOutputPathError extends Error {
-  constructor(index: number) {
-    super(`Missing or empty .path in penpot export config at index ${index}.`)
+class FilesConfigError extends Error {
+  constructor() {
+    super('Missing or invalid .files in penpot export config.')
   }
 }
 
-class MissingFileIdError extends Error {
-  constructor(index: number) {
-    super(`Missing or empty .fileId in penpot export config at index ${index}.`)
-  }
-}
+export function validateAndNormalizePenpotExportConfig(
+  userConfig: object,
+): Config {
+  let normalizedConfig: Config = createBaseConfig()
 
-class MissingPageIdError extends Error {
-  constructor(index: number) {
-    super(`Missing or empty .pageId in penpot export config at index ${index}.`)
-  }
-}
+  if (
+    'accessToken' in userConfig &&
+    typeof userConfig.accessToken === 'string'
+  ) {
+    normalizedConfig.accessToken = userConfig.accessToken
+  } else throw new AccessTokenConfigError()
 
-export function validateAndNormalizePenpotExportConfig(config: Config): Config {
-  if (!config.accessToken) {
-    throw new MissingAccessTokenError()
-  }
-
-  let normalizedConfig: Config = {
-    ...BASE_CONFIG,
-    ...config,
-    pages: [],
-    typographies: [],
-    colors: [],
-  }
-
-  if (config.instance != null) {
-    try {
-      new URL(config.instance)
-    } catch (error) {
-      if (error instanceof TypeError) {
-        throw new InvalidInstanceUrlError()
+  if ('instance' in userConfig) {
+    if (typeof userConfig.instance === 'string') {
+      try {
+        new URL(userConfig.instance)
+      } catch (error) {
+        if (error instanceof TypeError)
+          throw new InvalidInstanceUrlConfigError()
+        throw error
       }
 
-      throw error
-    }
-
-    normalizedConfig.instance = config.instance.endsWith('/')
-      ? config.instance.slice(0, -1)
-      : config.instance
+      normalizedConfig.instance = userConfig.instance.endsWith('/')
+        ? userConfig.instance.slice(0, -1)
+        : userConfig.instance
+    } else throw new InvalidInstanceUrlConfigError()
   }
 
-  for (const [index, colorsConfig] of config.colors.entries()) {
-    const { output, fileId } = colorsConfig
-
-    if (!output) {
-      throw new MissingOutputPathError(index)
-    }
-
-    if (!fileId) {
-      throw new MissingFileIdError(index)
-    }
-
-    normalizedConfig.colors.push({
-      output,
-      fileId,
-    })
-  }
-
-  for (const [index, typographiesConfig] of config.typographies.entries()) {
-    const { output, fileId } = typographiesConfig
-
-    if (!output) {
-      throw new MissingOutputPathError(index)
-    }
-
-    if (!fileId) {
-      throw new MissingFileIdError(index)
-    }
-
-    normalizedConfig.typographies.push({
-      output,
-      fileId,
-    })
-  }
-
-  for (const [index, pageConfig] of config.pages.entries()) {
-    if (!pageConfig.output) {
-      throw new MissingOutputPathError(index)
-    }
-
-    if (!pageConfig.fileId) {
-      throw new MissingFileIdError(index)
-    }
-
-    if (!pageConfig.pageId) {
-      throw new MissingPageIdError(index)
-    }
-
-    normalizedConfig.pages.push({
-      ...PAGES_CONFIG,
-      ...pageConfig,
-    })
-  }
+  if (
+    'files' in userConfig &&
+    Array.isArray(userConfig.files) &&
+    userConfig.files.length > 0
+  ) {
+    normalizedConfig.files = userConfig.files.map(
+      validateAndNormalizePenpotExportFileConfig,
+    )
+  } else throw new FilesConfigError()
 
   return normalizedConfig
 }

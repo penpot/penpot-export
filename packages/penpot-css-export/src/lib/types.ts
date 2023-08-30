@@ -1,25 +1,41 @@
 export interface PagesConfig {
   output: string
-  fileId: string
   pageId: string
 }
 
 export interface TypographiesConfig {
   output: string
-  fileId: string
 }
 
 export interface ColorsConfig {
   output: string
+}
+
+export type FileUserConfig = {
   fileId: string
+} & (
+  | { colors: ColorsConfig[] }
+  | { typographies: TypographiesConfig[] }
+  | { pages: PagesConfig[] }
+)
+
+export interface UserConfig {
+  instance?: string
+  accessToken: string
+  files: FileUserConfig[]
+}
+
+export interface FileConfig {
+  fileId: string
+  colors: ColorsConfig[]
+  typographies: TypographiesConfig[]
+  pages: PagesConfig[]
 }
 
 export interface Config {
   instance: string
   accessToken: string
-  colors: ColorsConfig[]
-  typographies: TypographiesConfig[]
-  pages: PagesConfig[]
+  files: FileConfig[]
 }
 
 export interface CSSClassDefinition {

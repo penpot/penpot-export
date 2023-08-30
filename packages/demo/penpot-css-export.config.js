@@ -1,28 +1,33 @@
 require('dotenv').config()
 
 /**
- * @type {import('penpot-css-export').Config}
+ * @type {import('penpot-css-export').UserConfig}
  */
 const config = {
   instance: process.env.PENPOT_BASE_URL || undefined,
   accessToken: process.env.PENPOT_ACCESS_TOKEN,
-  colors: [
+  files: [
     {
-      output: 'src/styles/colors.css', // 👈🏻 Path where your css should be generated.
-      fileId: '4a499800-872e-80e1-8002-fc0b585dc061'
-    },
-  ],
-  typographies: [
-    {
-      output: 'src/styles/typographies.css', // 👈🏻 Path where your css should be generated.
-      fileId: '4a499800-872e-80e1-8002-fc0b585dc061'
-    },
-  ],
-  pages: [
-    {
-      output: 'src/styles/ui.css', // 👈🏻 Path where your css should be generated.
       fileId: 'abea3ef6-4c19-808a-8003-01370d9cb586',
-      pageId: '71b1702b-2eb1-81d6-8002-f82a5f182088',
+      pages: [
+        {
+          pageId: '71b1702b-2eb1-81d6-8002-f82a5f182088',
+          output: 'src/styles/ui.css', // 👈🏻 Path where your css should be generated.
+        },
+      ],
+    },
+    {
+      fileId: '4a499800-872e-80e1-8002-fc0b585dc061',
+      colors: [
+        {
+          output: 'src/styles/colors.css', // 👈🏻 Path where your css should be generated.
+        },
+      ],
+      typographies: [
+        {
+          output: 'src/styles/typographies.css', // 👈🏻 Path where your css should be generated.
+        },
+      ],
     },
   ],
 }
