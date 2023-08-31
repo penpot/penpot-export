@@ -1,6 +1,6 @@
 import Penpot from '../lib/api'
-import { validateAndNormalizePenpotExportConfig } from './config'
-import { CSSClassDefinition, Config } from './types'
+import { validateUserConfig, normalizePenpotExportUserConfig } from './config'
+import { CSSClassDefinition } from './types'
 import {
   textToCssClassSelector,
   textToCssCustomProperyName,
@@ -13,7 +13,12 @@ export async function generateCssFromConfig(
   userConfig: object,
   rootProjectPath: string,
 ) {
-  const config = validateAndNormalizePenpotExportConfig(userConfig)
+  if (!validateUserConfig(userConfig))
+    throw new Error(
+      'Error validating user config. This is probably an error in penpot-css-export code.',
+    )
+
+  const config = normalizePenpotExportUserConfig(userConfig)
   const penpot = new Penpot({
     baseUrl: config.instance,
     accessToken: config.accessToken,
