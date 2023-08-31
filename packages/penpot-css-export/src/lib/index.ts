@@ -29,7 +29,7 @@ export async function generateCssFromConfig(
       fileId: fileConfig.fileId,
     })
 
-    console.log('🖼️ Processing Penpot file: %s', penpotFile.fileName)
+    console.log('🎨 Processing Penpot file: %s', penpotFile.fileName)
 
     for (const colorsConfig of fileConfig.colors) {
       const cssClassDefinition: CSSClassDefinition = {
