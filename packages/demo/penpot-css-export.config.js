@@ -16,7 +16,7 @@ const config = {
       pages: [
         {
           pageId: '71b1702b-2eb1-81d6-8002-f82a5f182088',
-          output: 'src/styles/ui.css', // 👈🏻 Path where your css should be generated.
+          output: 'src/styles/ui.css', // 👈 Path where your CSS file should be generated.
         },
       ],
     },
@@ -24,12 +24,12 @@ const config = {
       fileId: '4a499800-872e-80e1-8002-fc0b585dc061',
       colors: [
         {
-          output: 'src/styles/colors.css', // 👈🏻 Path where your css should be generated.
+          output: 'src/styles/colors.css', // 👈 Path where your CSS file should be generated.
         },
       ],
       typographies: [
         {
-          output: 'src/styles/typographies.css', // 👈🏻 Path where your css should be generated.
+          output: 'src/styles/typographies.css', // 👈 Path where your CSS file should be generated.
         },
       ],
     },

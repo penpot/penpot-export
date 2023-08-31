@@ -26,16 +26,33 @@ Configuration example:
 require('dotenv').config()
 
 /**
- * @type {import('penpot-css-export').Config}
+ * @type {import('penpot-css-export').UserConfig}
  */
 const config = {
   instance: process.env.PENPOT_BASE_URL || undefined,
   accessToken: process.env.PENPOT_ACCESS_TOKEN,
-  pages: [
+  files: [
     {
-      output: 'src/styles/ui.css', // 👈🏻 Path where your css should be generated.
       fileId: 'abea3ef6-4c19-808a-8003-01370d9cb586',
-      pageId: '71b1702b-2eb1-81d6-8002-f82a5f182088',
+      pages: [
+        {
+          pageId: '71b1702b-2eb1-81d6-8002-f82a5f182088',
+          output: 'src/styles/ui.css', // 👈 Path where your CSS file should be generated.
+        },
+      ],
+    },
+    {
+      fileId: '4a499800-872e-80e1-8002-fc0b585dc061',
+      colors: [
+        {
+          output: 'src/styles/colors.css', // 👈 Path where your CSS file should be generated.
+        },
+      ],
+      typographies: [
+        {
+          output: 'src/styles/typographies.css', // 👈 Path where your CSS file should be generated.
+        },
+      ],
     },
   ],
 }
@@ -51,59 +68,7 @@ Once you've set up the `penpot-css-export.config.js` file, simply run the follow
 pce
 ```
 
-This will read your Penpot designs and generate CSS files in the directory specified in your configuration file.
-
-Based in the example a css file like this will be generated:
-
-```css
-.variables--body {
-  font-style: normal;
-  font-size: 14px;
-  font-weight: 400;
-  direction: ltr;
-  font-family: 'Source Code Pro';
-}
-
-.variables--h5 {
-  font-style: normal;
-  font-size: 18px;
-  font-weight: 800;
-  direction: ltr;
-  font-family: 'Source Code Pro';
-}
-
-.variables--h4 {
-  font-style: normal;
-  font-size: 24px;
-  font-weight: 800;
-  direction: ltr;
-  font-family: 'Source Code Pro';
-}
-
-.variables--h3 {
-  font-style: normal;
-  font-size: 36px;
-  font-weight: 800;
-  direction: ltr;
-  font-family: 'Source Code Pro';
-}
-
-.variables--h2 {
-  font-style: normal;
-  font-size: 48px;
-  font-weight: 800;
-  direction: ltr;
-  font-family: 'Source Code Pro';
-}
-
-.variables--h1 {
-  font-style: normal;
-  font-size: 72px;
-  font-weight: 900;
-  direction: ltr;
-  font-family: 'Source Code Pro';
-}
-```
+This will read your Penpot designs and generate CSS files in the places specified in your configuration file.
 
 ## Development
 
