@@ -11,7 +11,7 @@ export interface ColorsConfig {
   output: string
 }
 
-export type FileUserConfig = {
+export type UserFileConfig = {
   fileId: string
 } & (
   | { colors: ColorsConfig[] }
@@ -22,7 +22,7 @@ export type FileUserConfig = {
 export interface UserConfig {
   instance?: string
   accessToken: string
-  files: FileUserConfig[]
+  files: UserFileConfig[]
 }
 
 export interface FileConfig {

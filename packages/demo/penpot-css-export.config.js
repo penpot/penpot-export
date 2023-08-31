@@ -1,5 +1,9 @@
 require('dotenv').config()
 
+if (typeof process.env.PENPOT_ACCESS_TOKEN !== 'string') {
+  throw new Error('Missing PENPOT_ACCESS_TOKEN environment variable')
+}
+
 /**
  * @type {import('penpot-css-export').UserConfig}
  */
