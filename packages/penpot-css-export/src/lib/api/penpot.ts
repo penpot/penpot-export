@@ -1,16 +1,15 @@
 import fetch, { RequestInit } from 'node-fetch'
 import { pickObjectProps } from './helpers'
 import type {
-  PenpotObject,
-  PenpotPage,
-  PenpotSettings,
-  FetcherOptions,
   PenpotApiErrorResponse,
-  PenpotTypography,
-  PenpotGetFileOptions,
-  PenpotFile,
-  PenpotColor,
+  PenpotApiFile,
+  PenpotApiObject,
+  PenpotApiTypography,
+  PenpotClientFetcherOptions,
+  PenpotClientGetFileOptions,
+  PenpotClientSettings,
 } from './types'
+import { PenpotExportFile } from '../types'
 
 class PenpotApiError extends Error {
   constructor(parsedError: PenpotApiErrorResponse) {
@@ -30,13 +29,13 @@ export class Penpot {
   private instanceBaseUrl: string
   private accessToken: string
 
-  constructor(settings: PenpotSettings) {
+  constructor(settings: PenpotClientSettings) {
     this.instanceBaseUrl = settings.baseUrl
     this.accessToken = settings.accessToken
   }
 
   private async fetcher<ResultType>(
-    options: FetcherOptions,
+    options: PenpotClientFetcherOptions,
   ): Promise<ResultType> {
     const { command, body } = options
     const config: RequestInit = {
@@ -69,7 +68,7 @@ export class Penpot {
     return json as ResultType
   }
 
-  static extractObjectCssProps(object: PenpotObject) {
+  static extractObjectCssProps(object: PenpotApiObject) {
     let { textDecoration, ...styles } = object.positionData[0]
     const isTextObject = object.type === 'text'
 
@@ -82,7 +81,7 @@ export class Penpot {
     return styles
   }
 
-  static getTextObjectCssProps(object: PenpotObject) {
+  static getTextObjectCssProps(object: PenpotApiObject) {
     const textCssProps = [
       'fontStyle',
       'fontSize',
@@ -95,13 +94,10 @@ export class Penpot {
     return pickObjectProps(objectCssProps, textCssProps)
   }
 
-  async getFile(options: PenpotGetFileOptions): Promise<{
-    fileName: string
-    colors: Record<string, PenpotColor>
-    typographies: Record<string, PenpotTypography>
-    pages: Record<string, PenpotPage>
-  }> {
-    const file = await this.fetcher<PenpotFile>({
+  async getFile(
+    options: PenpotClientGetFileOptions,
+  ): Promise<PenpotExportFile> {
+    const file = await this.fetcher<PenpotApiFile>({
       command: 'get-file',
       body: {
         id: options.fileId,
@@ -116,7 +112,7 @@ export class Penpot {
     }
   }
 
-  static getTypographyAssetCssProps(typography: PenpotTypography) {
+  static getTypographyAssetCssProps(typography: PenpotApiTypography) {
     const textCssProps = [
       'lineHeight',
       'fontStyle',

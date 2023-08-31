@@ -1,5 +1,6 @@
-import { Config, UserConfig, FileConfig, UserFileConfig } from '../types'
+import { UserConfig, UserFileConfig } from '../types'
 
+import { Config, FileConfig } from './types'
 export { validateUserConfig } from './validator'
 
 function normalizePenpotExportUserFileConfig(
