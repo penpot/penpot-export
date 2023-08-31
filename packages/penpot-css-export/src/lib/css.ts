@@ -98,7 +98,6 @@ export function writeCssFile(
   const dirname = pathDirs.slice(0, pathDirs.length - 1).join('/')
 
   if (!fs.existsSync(dirname)) {
-    console.log('generando...')
     fs.mkdirSync(dirname, { recursive: true })
   }
 
