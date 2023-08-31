@@ -1,18 +1,18 @@
-export interface PenpotSettings {
+export interface PenpotClientSettings {
   baseUrl: string
   accessToken: string
 }
 
-export interface FetcherOptions {
+export interface PenpotClientFetcherOptions {
   command: string
   body: Record<string, string>
 }
 
-export interface PenpotGetFileOptions {
+export interface PenpotClientGetFileOptions {
   fileId: string
 }
 
-export interface PenpotObject {
+export interface PenpotApiObject {
   id: string
   name: string
   type: 'text'
@@ -21,14 +21,14 @@ export interface PenpotObject {
   shapes?: string[]
 }
 
-type PenpotAsset = {
+type PenpotApiAsset = {
   id: string
   name: string
   modifiedAt: string
   path: string
 }
 
-export interface PenpotColor extends PenpotAsset {
+export interface PenpotApiColor extends PenpotApiAsset {
   color: string
   opacity: number
 }
@@ -42,18 +42,20 @@ type CssTextProperty =
   | 'letterSpacing'
   | 'fontFamily'
 
-export type PenpotTypography = PenpotAsset & {
+export type PenpotApiTypography = PenpotApiAsset & {
   fontId: string
   fontVariantId: string
 } & Record<CssTextProperty, string>
 
-export interface PenpotPage {
+interface PenpotApiContainer {
   id: string
   name: string
-  objects: Record<string, PenpotObject>
+  objects: Record<string, PenpotApiObject>
 }
+export type PenpotApiPage = PenpotApiContainer
+export type PenpotApiComponent = PenpotApiContainer
 
-export interface PenpotFile {
+export interface PenpotApiFile {
   id: string
   name: string
   revn: number
@@ -61,9 +63,9 @@ export interface PenpotFile {
   data: {
     id: string
     version: number
-    colors?: Record<string, PenpotColor>
-    typographies?: Record<string, PenpotTypography>
-    pagesIndex?: Record<string, PenpotPage>
+    colors?: Record<string, PenpotApiColor>
+    typographies?: Record<string, PenpotApiTypography>
+    pagesIndex?: Record<string, PenpotApiPage>
   }
 }
 
@@ -71,5 +73,3 @@ export interface PenpotApiErrorResponse {
   type: string
   code: string
 }
-
-export type PenpotComponent = PenpotObject & { objects: PenpotObject[] }

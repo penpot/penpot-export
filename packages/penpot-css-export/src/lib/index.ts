@@ -83,7 +83,8 @@ export async function generateCssFromConfig(
         .map((object) => getObjectShapesFromPage(object, page))
 
       for (const component of components) {
-        for (const object of component.objects) {
+        for (const objectId in component.objects) {
+          const object = component.objects[objectId]
           if (object.type === 'text') {
             const cssProps = Penpot.getTextObjectCssProps(object)
             const selector = textToCssClassSelector(

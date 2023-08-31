@@ -1,14 +1,14 @@
-import { PenpotComponent, PenpotObject, PenpotPage } from './types'
+import { PenpotApiComponent, PenpotApiObject, PenpotApiPage } from './types'
 
-export function isComponent(object: PenpotObject) {
+export function isComponent(object: PenpotApiObject) {
   return object.componentRoot === true
 }
 
 export function getObjectShapesFromPage(
-  object: PenpotObject,
-  page: PenpotPage,
-): PenpotComponent {
-  const objects: PenpotObject[] = []
+  object: PenpotApiObject,
+  page: PenpotApiPage,
+): PenpotApiComponent {
+  const objects: Record<string, PenpotApiObject> = {}
   const shapes = object.shapes || []
 
   shapes?.forEach((shapeId) => {
@@ -19,7 +19,7 @@ export function getObjectShapesFromPage(
       return
     }
 
-    objects.push(object)
+    objects[object.id] = object
   })
 
   return { ...object, objects }

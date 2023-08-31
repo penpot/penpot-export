@@ -1,4 +1,6 @@
-import { PagesConfig, ColorsConfig, TypographiesConfig } from '../types'
+import { UserFileConfig, UserConfig } from '../types'
+
+import { PagesConfig, ColorsConfig, TypographiesConfig } from './types'
 
 class FileIdConfigError extends Error {
   constructor() {
@@ -24,20 +26,6 @@ class PageIdConfigError extends Error {
       `Missing or invalid .pageId in penpot export config at index ${index}.`,
     )
   }
-}
-
-export type UserFileConfig = {
-  fileId: string
-} & (
-  | { colors: ColorsConfig[] }
-  | { typographies: TypographiesConfig[] }
-  | { pages: PagesConfig[] }
-)
-
-export interface UserConfig {
-  instance?: string
-  accessToken: string
-  files: UserFileConfig[]
 }
 
 function validateUserColorsConfig(

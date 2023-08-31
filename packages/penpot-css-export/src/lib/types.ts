@@ -1,15 +1,13 @@
-export interface PagesConfig {
-  output: string
-  pageId: string
-}
-
-export interface TypographiesConfig {
-  output: string
-}
-
-export interface ColorsConfig {
-  output: string
-}
+import type {
+  PenpotApiPage,
+  PenpotApiTypography,
+  PenpotApiColor,
+} from './api/types'
+import type {
+  ColorsConfig,
+  PagesConfig,
+  TypographiesConfig,
+} from './config/types'
 
 export type UserFileConfig = {
   fileId: string
@@ -25,17 +23,11 @@ export interface UserConfig {
   files: UserFileConfig[]
 }
 
-export interface FileConfig {
-  fileId: string
-  colors: ColorsConfig[]
-  typographies: TypographiesConfig[]
-  pages: PagesConfig[]
-}
-
-export interface Config {
-  instance: string
-  accessToken: string
-  files: FileConfig[]
+export interface PenpotExportFile {
+  fileName: string
+  colors: Record<string, PenpotApiColor>
+  typographies: Record<string, PenpotApiTypography>
+  pages: Record<string, PenpotApiPage>
 }
 
 export interface CSSClassDefinition {
