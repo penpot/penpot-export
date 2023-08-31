@@ -33,7 +33,7 @@ export interface PenpotApiColor extends PenpotApiAsset {
   opacity: number
 }
 
-type CssTextProperty =
+export type CssTextProperty =
   | 'lineHeight'
   | 'fontStyle'
   | 'textTransform'

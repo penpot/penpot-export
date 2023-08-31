@@ -1,10 +1,7 @@
 import fetch, { RequestInit } from 'node-fetch'
-import { pickObjectProps } from './helpers'
 import type {
   PenpotApiErrorResponse,
   PenpotApiFile,
-  PenpotApiObject,
-  PenpotApiTypography,
   PenpotClientFetcherOptions,
   PenpotClientGetFileOptions,
   PenpotClientSettings,
@@ -68,32 +65,6 @@ export class Penpot {
     return json as ResultType
   }
 
-  static extractObjectCssProps(object: PenpotApiObject) {
-    let { textDecoration, ...styles } = object.positionData[0]
-    const isTextObject = object.type === 'text'
-
-    if (isTextObject) {
-      if (!textDecoration.startsWith('none')) {
-        styles = { ...styles, textDecoration }
-      }
-    }
-
-    return styles
-  }
-
-  static getTextObjectCssProps(object: PenpotApiObject) {
-    const textCssProps = [
-      'fontStyle',
-      'fontSize',
-      'fontWeight',
-      'direction',
-      'fontFamily',
-    ]
-    const objectCssProps = Penpot.extractObjectCssProps(object)
-
-    return pickObjectProps(objectCssProps, textCssProps)
-  }
-
   async getFile(
     options: PenpotClientGetFileOptions,
   ): Promise<PenpotExportFile> {
@@ -109,23 +80,6 @@ export class Penpot {
       colors: file.data.colors ?? {},
       typographies: file.data.typographies ?? {},
       pages: file.data.pagesIndex ?? {},
-    }
-  }
-
-  static getTypographyAssetCssProps(typography: PenpotApiTypography) {
-    const textCssProps = [
-      'lineHeight',
-      'fontStyle',
-      'textTransform',
-      'fontWeight',
-      'direction',
-    ]
-
-    return {
-      ...pickObjectProps(typography, textCssProps),
-      fontSize: `${typography.fontSize}px`,
-      letterSpacing: `${typography.letterSpacing}px`,
-      fontFamily: `"${typography.fontFamily}"`,
     }
   }
 }
