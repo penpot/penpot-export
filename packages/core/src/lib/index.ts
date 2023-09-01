@@ -6,7 +6,8 @@ import { adaptTypographiesToCssClassDefinitions } from './adapters/inbound/typog
 import { adaptColorsToCssVariables } from './adapters/inbound/colorsToCssVariables'
 import { adaptPageComponentsToCssClassDefinitions } from './adapters/inbound/pageComponentsToCssClasses'
 
-export async function generateCssFromConfig(
+export type * from './types'
+export default async function penpotExport(
   userConfig: object,
   rootProjectPath: string,
 ) {

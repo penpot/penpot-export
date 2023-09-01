@@ -1,12 +1,12 @@
 {
-  "name": "root",
+  "name": "penpot-export",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm run dev -w penpot-export",
-    "build": "npm run build -w penpot-export",
+    "dev": "npm run dev -w @penpot-export/cli",
+    "build": "npm run build -w @penpot-export/core -w @penpot-export/cli",
     "demo": "npm run generate-css -w demo"
   }
 }

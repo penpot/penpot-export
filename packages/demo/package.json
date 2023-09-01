@@ -6,7 +6,7 @@
     "generate-css": "penpot-export"
   },
   "dependencies": {
-    "penpot-export": "0.0.0"
+    "@penpot-export/cli": "0.0.0"
   },
   "devDependencies": {
     "dotenv": "^16.3.1"

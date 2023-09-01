@@ -1,8 +1,8 @@
 #! /usr/bin/env node
 
-import fs from 'fs'
-import path from 'path'
-import { generateCssFromConfig } from '../lib'
+import fs from 'node:fs'
+import path from 'node:path'
+import penpotExport from '@penpot-export/core'
 
 const rootProjectPath = fs.realpathSync(process.cwd())
 const configFilePath = path.resolve(rootProjectPath, 'penpot-export.config.js')
@@ -16,4 +16,4 @@ if (!exists) {
 
 const config = require(configFilePath)
 
-generateCssFromConfig(config, rootProjectPath)
+penpotExport(config, rootProjectPath)
