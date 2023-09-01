@@ -1,5 +1,5 @@
 {
-  "name": "penpot-css-export",
+  "name": "penpot-export",
   "version": "0.0.0",
   "license": "UNLICENSED",
   "main": "dist/bin/index.js",
@@ -7,9 +7,7 @@
   "files": [
     "dist"
   ],
-  "bin": {
-    "pce": "./dist/bin/index.js"
-  },
+  "bin": "./dist/bin/index.js",
   "scripts": {
     "build": "tsc",
     "format": "prettier -w .",

@@ -12,7 +12,7 @@ export async function generateCssFromConfig(
 ) {
   if (!validateUserConfig(userConfig))
     throw new Error(
-      'Error validating user config. This is probably an error in penpot-css-export code.',
+      'Error validating user config. This is probably an error in penpot-export code.',
     )
 
   const config = normalizePenpotExportUserConfig(userConfig)

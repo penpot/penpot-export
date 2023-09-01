@@ -1,24 +1,24 @@
-# penpot-css-export
+# penpot-export
 
 ## Description
 
-`penpot-css-export` is an npm tool designed to export your design components created in Penpot directly to CSS files. With a simple `pce` command, you can convert your designs into ready-to-use CSS classes.
+`penpot-export` is an npm tool designed to export your design components created in Penpot directly to CSS files. With a simple `pce` command, you can convert your designs into ready-to-use CSS classes.
 
 ## Installation
 
-To install `penpot-css-export`, simply run:
+To install `penpot-export`, simply run:
 
 ```bash
 # npm
-npm install penpot-css-export --save-dev
+npm install penpot-export --save-dev
 
 # yarn
-yarn add penpot-css-export
+yarn add penpot-export
 ```
 
 ## Configuration
 
-Before you can use `penpot-css-export`, you need to set up a [`penpot-css-export.config.js`](./packages/demo/penpot-css-export.config.js) file at the root of your project. This file defines how your Penpot designs will be exported.
+Before you can use `penpot-export`, you need to set up a [`penpot-export.config.js`](./packages/demo/penpot-export.config.js) file at the root of your project. This file defines how your Penpot designs will be exported.
 
 Configuration example:
 
@@ -26,7 +26,7 @@ Configuration example:
 require('dotenv').config()
 
 /**
- * @type {import('penpot-css-export').UserConfig}
+ * @type {import('penpot-export').UserConfig}
  */
 const config = {
   instance: process.env.PENPOT_BASE_URL || undefined,
@@ -62,7 +62,7 @@ module.exports = config
 
 ## Usage
 
-Once you've set up the `penpot-css-export.config.js` file, simply run the following command to generate your CSS files:
+Once you've set up the `penpot-export.config.js` file, simply run the following command to generate your CSS files:
 
 ```bash
 pce
@@ -82,12 +82,12 @@ This project utilizes [Yarn Workspaces](https://classic.yarnpkg.com/lang/en/docs
 
 ### Package Structure
 
-- [**packages/penpot-css-export**](./packages/penpot-css-export/): This package contains the CLI tool written in TypeScript. This is where the primary tool code resides.
+- [**packages/penpot-export**](./packages/penpot-export/): This package contains the CLI tool written in TypeScript. This is where the primary tool code resides.
 - [**packages/demo**](./packages/demo/): This package serves as a demonstration environment. You can run the `pce` command within this package to test out implementations in development.
 
 ### Local Development
 
-For the "demo" package to utilize the local version of the `pce` command you're developing, it's essential first to compile the TypeScript code from the "penpot-css-export" package.
+For the "demo" package to utilize the local version of the `pce` command you're developing, it's essential first to compile the TypeScript code from the "penpot-export" package.
 
 ### Handy Commands
 
