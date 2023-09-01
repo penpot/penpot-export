@@ -130,7 +130,7 @@ export function validateUserConfig(
   )
     throw new AccessTokenConfigError()
 
-  if ('instance' in userConfig) {
+  if ('instance' in userConfig && userConfig.instance !== undefined) {
     if (typeof userConfig.instance !== 'string')
       throw new InvalidInstanceUrlConfigError()
 
