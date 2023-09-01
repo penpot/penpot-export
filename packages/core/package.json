@@ -1,17 +1,15 @@
 {
-  "name": "penpot-export",
+  "name": "@penpot-export/core",
   "version": "0.0.0",
   "license": "UNLICENSED",
-  "main": "dist/bin/index.js",
-  "types": "dist/lib/types.d.ts",
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
   "files": [
     "dist"
   ],
-  "bin": "./dist/bin/index.js",
   "scripts": {
     "build": "tsc",
-    "format": "prettier -w .",
-    "dev": "tsc-watch"
+    "format": "prettier -w ."
   },
   "dependencies": {
     "node-fetch": "2",

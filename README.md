@@ -2,7 +2,7 @@
 
 ## Description
 
-`penpot-export` is an npm tool designed to export your design components created in Penpot directly to CSS files. With a simple `pce` command, you can convert your designs into ready-to-use CSS classes.
+`penpot-export` is a tool designed to export your design components created in Penpot directly to CSS files. With a simple `penpot-export` command, you can convert your designs into ready-to-use CSS declarations.
 
 ## Installation
 
@@ -10,10 +10,10 @@ To install `penpot-export`, simply run:
 
 ```bash
 # npm
-npm install penpot-export --save-dev
+npm install @penpot-export/cli --save-dev
 
 # yarn
-yarn add penpot-export
+yarn add @penpot-export/cli
 ```
 
 ## Configuration
@@ -23,10 +23,15 @@ Before you can use `penpot-export`, you need to set up a [`penpot-export.config.
 Configuration example:
 
 ```js
+// @ts-check
 require('dotenv').config()
 
+if (typeof process.env.PENPOT_ACCESS_TOKEN !== 'string') {
+  throw new Error('Missing PENPOT_ACCESS_TOKEN environment variable')
+}
+
 /**
- * @type {import('penpot-export').UserConfig}
+ * @type {import('@penpot-export/core').UserConfig}
  */
 const config = {
   instance: process.env.PENPOT_BASE_URL || undefined,
@@ -65,7 +70,7 @@ module.exports = config
 Once you've set up the `penpot-export.config.js` file, simply run the following command to generate your CSS files:
 
 ```bash
-pce
+penpot-export
 ```
 
 This will read your Penpot designs and generate CSS files in the places specified in your configuration file.
@@ -74,7 +79,7 @@ This will read your Penpot designs and generate CSS files in the places specifie
 
 ### Using Yarn Workspaces
 
-This project utilizes [Yarn Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) to manage multiple packages within a single repository. This allows us to house the module's source code and a demo in separate packages, streamlining development and testing.
+This project utilizes [Yarn Workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) to manage multiple packages within a single repository. This allows us to house the source code of the penpot-export modules and a demo in separate packages, streamlining development and testing.
 
 > **Why Yarn Workspaces?**
 
@@ -82,12 +87,13 @@ This project utilizes [Yarn Workspaces](https://classic.yarnpkg.com/lang/en/docs
 
 ### Package Structure
 
-- [**packages/penpot-export**](./packages/penpot-export/): This package contains the CLI tool written in TypeScript. This is where the primary tool code resides.
-- [**packages/demo**](./packages/demo/): This package serves as a demonstration environment. You can run the `pce` command within this package to test out implementations in development.
+- [**packages/core**](./packages/core/): This package contains the tool written in TypeScript. This is where the primary tool code resides.
+- [**packages/cli**](./packages/cli/): This package contains the CLI tool written in TypeScript.
+- [**packages/demo**](./packages/demo/): This package serves as a demonstration environment. You can run the `penpot-export` command within this package to test out implementations in development.
 
 ### Local Development
 
-For the "demo" package to utilize the local version of the `pce` command you're developing, it's essential first to compile the TypeScript code from the "penpot-export" package.
+For the "demo" package to utilize the local version of the `penpot-export` command you're developing, it's essential first to compile the TypeScript code from the "penpot-export" package.
 
 ### Handy Commands
 
@@ -95,6 +101,6 @@ To facilitate the development process, we've set up the following commands that 
 
 - **yarn dev**: Runs the CLI tool in development mode. Ideal for making changes and seeing real-time results.
 - **yarn build**: Compiles the TypeScript code in production mode. Ensure you run this command before testing the tool in the "demo" package.
-- **yarn demo**: Runs the `pce` command within the "demo" package. It's handy for quickly testing implementations after making changes to the source code.
+- **yarn demo**: Runs the `penpot-export` command within the "demo" package. It's handy for quickly testing implementations after making changes to the source code.
 
 We recommend following this workflow: make changes to the code, run `yarn build`, and then `yarn demo` to test your changes.

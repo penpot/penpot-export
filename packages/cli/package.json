@@ -1,0 +1,28 @@
+{
+  "name": "@penpot-export/cli",
+  "version": "0.0.0",
+  "license": "UNLICENSED",
+  "main": "dist/bin/index.js",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "penpot-export": "./dist/bin/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier -w .",
+    "dev": "tsc-watch"
+  },
+  "dependencies": {
+    "@penpot-export/core": "0.0.0",
+    "prettier": "^3.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.0",
+    "@types/node-fetch": "2",
+    "ts-node": "^10.9.1",
+    "tsc-watch": "^6.0.4",
+    "typescript": "^5.1.6"
+  }
+}

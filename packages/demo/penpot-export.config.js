@@ -1,3 +1,4 @@
+// @ts-check
 require('dotenv').config()
 
 if (typeof process.env.PENPOT_ACCESS_TOKEN !== 'string') {
@@ -5,7 +6,7 @@ if (typeof process.env.PENPOT_ACCESS_TOKEN !== 'string') {
 }
 
 /**
- * @type {import('penpot-export').UserConfig}
+ * @type {import('@penpot-export/core').UserConfig}
  */
 const config = {
   instance: process.env.PENPOT_BASE_URL || undefined,
