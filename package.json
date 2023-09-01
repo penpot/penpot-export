@@ -5,8 +5,8 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm run dev -w penpot-css-export",
-    "build": "npm run build -w penpot-css-export",
+    "dev": "npm run dev -w penpot-export",
+    "build": "npm run build -w penpot-export",
     "demo": "npm run generate-css -w demo"
   }
 }

@@ -5,7 +5,7 @@ if (typeof process.env.PENPOT_ACCESS_TOKEN !== 'string') {
 }
 
 /**
- * @type {import('penpot-css-export').UserConfig}
+ * @type {import('penpot-export').UserConfig}
  */
 const config = {
   instance: process.env.PENPOT_BASE_URL || undefined,
