@@ -23,7 +23,7 @@ function escapeCssCharacter(char: string) {
  * letter:                  An uppercase letter or a lowercase letter.
  * non-ASCII code point:    A code point with a value equal to or greater than U+0080 <control>.
  */
-function textToCssIdentToken(str: string) {
+export function textToCssIdentToken(str: string) {
   const normalizedString = str.trim().replace(/\s/g, '_')
 
   const escapedString = normalizedString

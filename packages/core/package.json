@@ -9,6 +9,8 @@
   ],
   "scripts": {
     "build": "tsc",
+    "pretest": "npm run build",
+    "test": "node --test",
     "format": "prettier -w ."
   },
   "dependencies": {
