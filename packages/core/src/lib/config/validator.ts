@@ -49,9 +49,21 @@ const userPagesConfigSchema = z.object({
 const userFileConfigSchema = z
   .object({
     fileId: fileIdSchema,
-    colors: z.optional(z.array(userColorsConfigSchema)),
-    typographies: z.optional(z.array(userTypographiesConfigSchema)),
-    pages: z.optional(z.array(userPagesConfigSchema)),
+    colors: z.optional(
+      z
+        .array(userColorsConfigSchema)
+        .nonempty({ message: '.colors is required to have at least one item' }),
+    ),
+    typographies: z.optional(
+      z.array(userTypographiesConfigSchema).nonempty({
+        message: '.typographies is required to have at least one item',
+      }),
+    ),
+    pages: z.optional(
+      z
+        .array(userPagesConfigSchema)
+        .nonempty({ message: '.pages is required to have at least one item' }),
+    ),
   })
   .refine(
     (object) => {
