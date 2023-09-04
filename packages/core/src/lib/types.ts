@@ -3,24 +3,8 @@ import type {
   PenpotApiTypography,
   PenpotApiColor,
 } from './api/types'
-import type {
-  ColorsConfig,
-  PagesConfig,
-  TypographiesConfig,
-} from './config/types'
 
-export type UserFileConfig = {
-  fileId: string
-  colors?: ColorsConfig[]
-  typographies?: TypographiesConfig[]
-  pages?: PagesConfig[]
-}
-
-export interface UserConfig {
-  instance?: string
-  accessToken: string
-  files: UserFileConfig[]
-}
+export type { UserConfig } from './config/types'
 
 export interface PenpotExportFile {
   fileName: string
