@@ -8,9 +8,10 @@ function normalizePenpotExportUserFileConfig(
 ): FileConfig {
   return {
     fileId: userConfig.fileId,
-    colors: 'colors' in userConfig ? userConfig.colors : [],
-    typographies: 'typographies' in userConfig ? userConfig.typographies : [],
-    pages: 'pages' in userConfig ? userConfig.pages : [],
+    colors: userConfig.colors !== undefined ? userConfig.colors : [],
+    typographies:
+      userConfig.typographies !== undefined ? userConfig.typographies : [],
+    pages: userConfig.pages !== undefined ? userConfig.pages : [],
   }
 }
 

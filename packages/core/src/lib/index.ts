@@ -11,12 +11,9 @@ export default async function penpotExport(
   userConfig: object,
   rootProjectPath: string,
 ) {
-  if (!validateUserConfig(userConfig))
-    throw new Error(
-      'Error validating user config. This is probably an error in penpot-export code.',
-    )
+  const parsedUserConfig = validateUserConfig(userConfig)
 
-  const config = normalizePenpotExportUserConfig(userConfig)
+  const config = normalizePenpotExportUserConfig(parsedUserConfig)
   const penpot = new Penpot({
     baseUrl: config.instance,
     accessToken: config.accessToken,

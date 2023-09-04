@@ -11,11 +11,10 @@ import type {
 
 export type UserFileConfig = {
   fileId: string
-} & (
-  | { colors: ColorsConfig[] }
-  | { typographies: TypographiesConfig[] }
-  | { pages: PagesConfig[] }
-)
+  colors?: ColorsConfig[]
+  typographies?: TypographiesConfig[]
+  pages?: PagesConfig[]
+}
 
 export interface UserConfig {
   instance?: string
