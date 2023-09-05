@@ -1,0 +1,110 @@
+[
+  {
+    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--🖥_Title_Medium",
+    "cssProps": {
+      "lineHeight": "1.2000000000000002",
+      "fontStyle": "normal",
+      "textTransform": "none",
+      "fontWeight": "700",
+      "fontSize": "54px",
+      "letterSpacing": "0px",
+      "fontFamily": "\"Work Sans\""
+    }
+  },
+  {
+    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--📱_Title_Medium",
+    "cssProps": {
+      "lineHeight": "1.2000000000000002",
+      "fontStyle": "normal",
+      "textTransform": "none",
+      "fontWeight": "700",
+      "fontSize": "35px",
+      "letterSpacing": "0px",
+      "fontFamily": "\"Work Sans\""
+    }
+  },
+  {
+    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--🖥_Title_Large",
+    "cssProps": {
+      "lineHeight": "1.1",
+      "fontStyle": "normal",
+      "textTransform": "none",
+      "fontWeight": "700",
+      "fontSize": "85px",
+      "letterSpacing": "0px",
+      "fontFamily": "\"Work Sans\""
+    }
+  },
+  {
+    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--Body_Large",
+    "cssProps": {
+      "lineHeight": "1.2",
+      "fontStyle": "normal",
+      "textTransform": "none",
+      "fontWeight": "400",
+      "fontSize": "22px",
+      "letterSpacing": "0px",
+      "fontFamily": "\"Work Sans\""
+    }
+  },
+  {
+    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--📱_Title_Small",
+    "cssProps": {
+      "lineHeight": "1.2000000000000002",
+      "fontStyle": "normal",
+      "textTransform": "none",
+      "fontWeight": "700",
+      "fontSize": "28px",
+      "letterSpacing": "0px",
+      "fontFamily": "\"Work Sans\""
+    }
+  },
+  {
+    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--🖥_Title_Small",
+    "cssProps": {
+      "lineHeight": "1.2000000000000002",
+      "fontStyle": "normal",
+      "textTransform": "none",
+      "fontWeight": "700",
+      "fontSize": "35px",
+      "letterSpacing": "0px",
+      "fontFamily": "\"Work Sans\""
+    }
+  },
+  {
+    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--Body_Small",
+    "cssProps": {
+      "lineHeight": "1.2",
+      "fontStyle": "normal",
+      "textTransform": "none",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "letterSpacing": "0px",
+      "fontFamily": "\"Work Sans\""
+    }
+  },
+  {
+    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--📱_Title_Large",
+    "cssProps": {
+      "lineHeight": "1",
+      "fontStyle": "normal",
+      "textTransform": "none",
+      "fontWeight": "700",
+      "fontSize": "44px",
+      "letterSpacing": "0px",
+      "fontFamily": "\"Work Sans\""
+    }
+  },
+  {
+    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--Body_Medium",
+    "cssProps": {
+      "lineHeight": "1.2",
+      "fontStyle": "normal",
+      "textTransform": "none",
+      "fontWeight": "400",
+      "fontSize": "18px",
+      "letterSpacing": "0px",
+      "fontFamily": "\"Work Sans\""
+    }
+  }
+]

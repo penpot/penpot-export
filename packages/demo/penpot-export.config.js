@@ -19,6 +19,11 @@ const config = {
           pageId: '71b1702b-2eb1-81d6-8002-f82a5f182088',
           output: 'src/styles/ui.css', // 👈 Path where your CSS file should be generated.
         },
+        {
+          pageId: '71b1702b-2eb1-81d6-8002-f82a5f182088',
+          output: 'src/styles/ui.json', // 👈 Path where your JSON file should be generated.
+          format: 'json',
+        },
       ],
     },
     {
@@ -27,10 +32,18 @@ const config = {
         {
           output: 'src/styles/colors.css', // 👈 Path where your CSS file should be generated.
         },
+        {
+          output: 'src/styles/colors.json', // 👈 Path where your JSON file should be generated.
+          format: 'json',
+        },
       ],
       typographies: [
         {
           output: 'src/styles/typographies.css', // 👈 Path where your CSS file should be generated.
+        },
+        {
+          output: 'src/styles/typographies.json', // 👈 Path where your JSON file should be generated.
+          format: 'json',
         },
       ],
     },

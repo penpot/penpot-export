@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Primary_900",
+    "value": "rgba(0, 110, 84, 1)"
+  },
+  {
+    "name": "Secondary_500",
+    "value": "rgba(191, 152, 254, 1)"
+  },
+  {
+    "name": "Secondary_400",
+    "value": "rgba(207, 179, 255, 1)"
+  },
+  {
+    "name": "Neutral_100",
+    "value": "rgba(247, 248, 249, 1)"
+  },
+  {
+    "name": "Neutral_500",
+    "value": "rgba(133, 144, 162, 1)"
+  },
+  {
+    "name": "Primary_200",
+    "value": "rgba(202, 255, 233, 1)"
+  },
+  {
+    "name": "Secondary_800",
+    "value": "rgba(105, 31, 209, 1)"
+  },
+  {
+    "name": "Primary_100",
+    "value": "rgba(233, 255, 247, 1)"
+  },
+  {
+    "name": "Secondary_200",
+    "value": "rgba(240, 232, 255, 1)"
+  },
+  {
+    "name": "Neutral_200",
+    "value": "rgba(241, 242, 244, 1)"
+  },
+  {
+    "name": "Neutral_300",
+    "value": "rgba(220, 223, 228, 1)"
+  },
+  {
+    "name": "Neutral_700",
+    "value": "rgba(98, 111, 134, 1)"
+  },
+  {
+    "name": "Neutral_400",
+    "value": "rgba(179, 185, 196, 1)"
+  },
+  {
+    "name": "Neutral_600",
+    "value": "rgba(117, 129, 149, 1)"
+  },
+  {
+    "name": "Secondary_600",
+    "value": "rgba(148, 83, 249, 1)"
+  },
+  {
+    "name": "Primary_300",
+    "value": "rgba(154, 255, 217, 1)"
+  },
+  {
+    "name": "Primary_400",
+    "value": "rgba(90, 251, 199, 1)"
+  },
+  {
+    "name": "Secondary_300",
+    "value": "rgba(228, 212, 255, 1)"
+  },
+  {
+    "name": "Primary_800",
+    "value": "rgba(0, 139, 105, 1)"
+  },
+  {
+    "name": "Neutral_900",
+    "value": "rgba(23, 43, 77, 1)"
+  },
+  {
+    "name": "Neutral_800",
+    "value": "rgba(68, 84, 111, 1)"
+  },
+  {
+    "name": "Secondary_900",
+    "value": "rgba(91, 31, 170, 1)"
+  },
+  {
+    "name": "Primary_700",
+    "value": "rgba(0, 174, 127, 1)"
+  },
+  {
+    "name": "Secondary_700",
+    "value": "rgba(125, 48, 237, 1)"
+  },
+  {
+    "name": "Primary_500",
+    "value": "rgba(49, 239, 184, 1)"
+  },
+  {
+    "name": "Secondary_100",
+    "value": "rgba(249, 245, 255, 1)"
+  },
+  {
+    "name": "Primary_600",
+    "value": "rgba(0, 213, 154, 1)"
+  }
+]
