@@ -29,19 +29,21 @@ const pageIdSchema = z
   .uuid({
     message: '.pageId must be a valid UUID',
   })
-const outputSchema = z.string({
+const outputPathSchema = z.string({
   required_error: '.output is required',
   invalid_type_error: '.output must be a string',
 })
+// FIXME Format should be optional for user config, but required for parsed config
+const outputFormatSchema = z.union([z.literal('css'), z.literal('json')])
 
-const colorsConfigSchema = z.object({
-  output: outputSchema,
+const assetConfigSchema = z.object({
+  output: outputPathSchema,
+  format: z.optional(outputFormatSchema),
 })
-const typographiesConfigSchema = z.object({
-  output: outputSchema,
-})
-const pagesConfigSchema = z.object({
-  output: outputSchema,
+
+const colorsConfigSchema = assetConfigSchema
+const typographiesConfigSchema = assetConfigSchema
+const pagesConfigSchema = assetConfigSchema.extend({
   pageId: pageIdSchema,
 })
 
@@ -86,6 +88,7 @@ const userConfigSchema = z.object({
 })
 
 // Types
+export type AssetConfig = z.infer<typeof assetConfigSchema>
 export type ColorsConfig = z.infer<typeof colorsConfigSchema>
 export type TypographiesConfig = z.infer<typeof typographiesConfigSchema>
 export type PagesConfig = z.infer<typeof pagesConfigSchema>

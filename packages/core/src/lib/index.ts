@@ -1,12 +1,41 @@
 import path from 'node:path'
-import Penpot from '../lib/api'
-import { validateUserConfig, normalizePenpotExportUserConfig } from './config'
-import { writeCssFile } from './outputters/css'
+
 import { adaptTypographiesToCssClassDefinitions } from './adapters/inbound/typographyToCssClasses'
 import { adaptColorsToCssVariables } from './adapters/inbound/colorsToCssVariables'
 import { adaptPageComponentsToCssClassDefinitions } from './adapters/inbound/pageComponentsToCssClasses'
 
+import { Penpot } from './api/penpot'
+
+import {
+  validateUserConfig,
+  normalizePenpotExportUserConfig,
+  AssetConfig,
+} from './config'
+import { writeJsonFile, writeCssFile } from './outputters'
+import { CSSClassDefinition, CSSCustomPropertyDefinition } from './types'
+
+const processOutput = ({
+  outputFormat = 'css',
+  outputPath,
+  content,
+}: {
+  outputFormat: AssetConfig['format']
+  outputPath: string
+  content: CSSClassDefinition[] | CSSCustomPropertyDefinition[]
+}) => {
+  if (outputFormat === 'css') {
+    return writeCssFile(outputPath, content)
+  }
+  if (outputFormat === 'json') {
+    return writeJsonFile(outputPath, content)
+  }
+  throw new Error(
+    'Unable to process output format. This is an error in penpot-export code, please contact their authors.',
+  )
+}
+
 export type * from './types'
+
 export default async function penpotExport(
   userConfig: object,
   rootProjectPath: string,
@@ -27,33 +56,33 @@ export default async function penpotExport(
     console.log('🎨 Processing Penpot file: %s', penpotFile.name)
 
     for (const colorsConfig of fileConfig.colors) {
-      const cssPath = path.resolve(rootProjectPath, colorsConfig.output)
-      const cssClassDefinition = adaptColorsToCssVariables(penpotFile)
-
-      writeCssFile(cssPath, [cssClassDefinition])
+      processOutput({
+        outputFormat: colorsConfig.format,
+        outputPath: path.resolve(rootProjectPath, colorsConfig.output),
+        content: adaptColorsToCssVariables(penpotFile),
+      })
 
       console.log('✅ Colors: %s', colorsConfig.output)
     }
 
     for (const typographiesConfig of fileConfig.typographies) {
-      const cssPath = path.resolve(rootProjectPath, typographiesConfig.output)
-      const cssClassDefinitions =
-        adaptTypographiesToCssClassDefinitions(penpotFile)
-
-      writeCssFile(cssPath, cssClassDefinitions)
+      processOutput({
+        outputFormat: typographiesConfig.format,
+        outputPath: path.resolve(rootProjectPath, typographiesConfig.output),
+        content: adaptTypographiesToCssClassDefinitions(penpotFile),
+      })
 
       console.log('✅ Typographies: %s', typographiesConfig.output)
     }
 
     for (const pagesConfig of fileConfig.pages) {
-      const cssClassDefinitions = adaptPageComponentsToCssClassDefinitions(
-        penpotFile,
-        { pageId: pagesConfig.pageId },
-      )
-
-      const cssPath = path.resolve(rootProjectPath, pagesConfig.output)
-
-      writeCssFile(cssPath, cssClassDefinitions)
+      processOutput({
+        outputFormat: pagesConfig.format,
+        outputPath: path.resolve(rootProjectPath, pagesConfig.output),
+        content: adaptPageComponentsToCssClassDefinitions(penpotFile, {
+          pageId: pagesConfig.pageId,
+        }),
+      })
 
       console.log('✅ Page components: %s', pagesConfig.output)
     }

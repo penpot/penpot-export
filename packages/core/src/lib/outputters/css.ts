@@ -1,7 +1,20 @@
 import fs from 'node:fs'
 import path from 'node:path'
+
+import { textToCssCustomProperyName } from '../css/helpers'
+
 import { camelToKebab } from '../string'
-import { CSSClassDefinition } from '../types'
+import {
+  CSSClassDefinition,
+  CSSCustomPropertyDefinition,
+  isCssClassDefinition,
+} from '../types'
+
+const areCssCustomPropertiesDefinitions = (
+  objects: Array<object>,
+): objects is Array<CSSCustomPropertyDefinition> => {
+  return !objects.every(isCssClassDefinition)
+}
 
 const serializeCssClass = (cssClassDefinition: CSSClassDefinition): string => {
   const cssValidProps = Object.keys(cssClassDefinition.cssProps).map(
@@ -11,15 +24,32 @@ const serializeCssClass = (cssClassDefinition: CSSClassDefinition): string => {
   return [`${cssClassDefinition.selector} {`, ...cssValidProps, '}'].join('\n')
 }
 
-const serializeCss = (cssClassDefinitions: CSSClassDefinition[]): string => {
-  return cssClassDefinitions.map(serializeCssClass).join('\n\n')
+const serializeCssCustomProperties = (
+  cssCustomProperties: CSSCustomPropertyDefinition[],
+): string => {
+  const selector = ':root'
+  const cssDeclarations = cssCustomProperties.map(
+    ({ name, value }) => `  ${textToCssCustomProperyName(name)}: ${value};`,
+  )
+
+  return [`${selector} {`, ...cssDeclarations, '}'].join('\n')
+}
+
+const serializeCss = (
+  cssDefinitions: CSSClassDefinition[] | CSSCustomPropertyDefinition[],
+): string => {
+  if (areCssCustomPropertiesDefinitions(cssDefinitions)) {
+    return serializeCssCustomProperties(cssDefinitions)
+  } else {
+    return cssDefinitions.map(serializeCssClass).join('\n\n')
+  }
 }
 
 export function writeCssFile(
   outputPath: string,
-  cssClassDefinitions: CSSClassDefinition[],
+  cssDefinitions: CSSClassDefinition[] | CSSCustomPropertyDefinition[],
 ) {
-  const css = serializeCss(cssClassDefinitions)
+  const css = serializeCss(cssDefinitions)
   const dirname = path.dirname(outputPath)
 
   if (!fs.existsSync(dirname)) {
