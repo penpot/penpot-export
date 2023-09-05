@@ -7,7 +7,7 @@ import { adaptPageComponentsToCssClassDefinitions } from './adapters/inbound/pag
 import { Penpot } from './api/penpot'
 
 import {
-  validateUserConfig,
+  parseUserConfig,
   normalizePenpotExportUserConfig,
   AssetConfig,
 } from './config'
@@ -40,7 +40,7 @@ export default async function penpotExport(
   userConfig: object,
   rootProjectPath: string,
 ) {
-  const parsedUserConfig = validateUserConfig(userConfig)
+  const parsedUserConfig = parseUserConfig(userConfig)
 
   const config = normalizePenpotExportUserConfig(parsedUserConfig)
   const penpot = new Penpot({
