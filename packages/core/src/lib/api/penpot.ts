@@ -6,7 +6,6 @@ import type {
   PenpotClientGetFileOptions,
   PenpotClientSettings,
 } from './types'
-import { PenpotExportFile } from '../types'
 
 class PenpotApiError extends Error {
   constructor(parsedError: PenpotApiErrorResponse) {
@@ -65,9 +64,7 @@ export class Penpot {
     return json as ResultType
   }
 
-  async getFile(
-    options: PenpotClientGetFileOptions,
-  ): Promise<PenpotExportFile> {
+  async getFile(options: PenpotClientGetFileOptions): Promise<PenpotApiFile> {
     const file = await this.fetcher<PenpotApiFile>({
       command: 'get-file',
       body: {
@@ -75,11 +72,6 @@ export class Penpot {
       },
     })
 
-    return {
-      fileName: file.name,
-      colors: file.data.colors ?? {},
-      typographies: file.data.typographies ?? {},
-      pages: file.data.pagesIndex ?? {},
-    }
+    return file
   }
 }

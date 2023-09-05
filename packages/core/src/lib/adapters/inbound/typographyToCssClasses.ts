@@ -1,7 +1,7 @@
 import { textToCssClassSelector } from '../../css/helpers'
 
-import { PenpotApiTypography, CssTextProperty } from '../../api'
-import { CSSClassDefinition, PenpotExportFile } from '../../types'
+import { PenpotApiTypography, CssTextProperty, PenpotApiFile } from '../../api'
+import { CSSClassDefinition } from '../../types'
 
 const getTypographyAssetCssProps = (
   typography: PenpotApiTypography,
@@ -18,11 +18,12 @@ const getTypographyAssetCssProps = (
 }
 
 export const adaptTypographiesToCssClassDefinitions = (
-  penpotFile: PenpotExportFile,
+  penpotFile: PenpotApiFile,
 ): CSSClassDefinition[] => {
-  const { fileName, typographies } = penpotFile
+  const fileName = penpotFile.name
+  const typographies = Object.values(penpotFile.data.typographies ?? {})
 
-  const cssClassDefinitions = Object.values(typographies).map((typography) => {
+  const cssClassDefinitions = typographies.map((typography) => {
     const cssProps = getTypographyAssetCssProps(typography)
     const selector = textToCssClassSelector(`${fileName}--${typography.name}`)
 

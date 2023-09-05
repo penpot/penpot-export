@@ -5,8 +5,8 @@ import {
 } from '../../api/helpers'
 import { textToCssClassSelector } from '../../css/helpers'
 
-import { PenpotApiObject } from '../../api'
-import { CSSClassDefinition, PenpotExportFile } from '../../types'
+import { PenpotApiFile, PenpotApiObject } from '../../api'
+import { CSSClassDefinition } from '../../types'
 
 const extractObjectCssProps = (object: PenpotApiObject) => {
   let { textDecoration, ...styles } = object.positionData[0]
@@ -35,17 +35,17 @@ const getTextObjectCssProps = (object: PenpotApiObject) => {
 }
 
 export const adaptPageComponentsToCssClassDefinitions = (
-  penpotFile: PenpotExportFile,
+  penpotFile: PenpotApiFile,
   options: { pageId: string },
 ): CSSClassDefinition[] => {
-  const cssClassDefinitions = []
-
-  const page = penpotFile.pages[options.pageId]
-
-  const components = Object.values(page.objects)
+  const pages = penpotFile.data.pagesIndex ?? {}
+  const page = pages[options.pageId]
+  const pageObjects = Object.values(page.objects)
+  const components = pageObjects
     .filter(isComponent)
     .map((object) => getObjectShapesFromPage(object, page))
 
+  const cssClassDefinitions = []
   for (const component of components) {
     for (const objectId in component.objects) {
       const object = component.objects[objectId]

@@ -1,6 +1,7 @@
 import { textToCssCustomProperyName } from '../../css/helpers'
 
-import { CSSClassDefinition, PenpotExportFile } from '../../types'
+import { PenpotApiFile } from '../../api'
+import { CSSClassDefinition } from '../../types'
 
 const toRgbaCssValue = (hex: string, alpha: number = 1) => {
   const channels = hex.match(/\w{2}/g)
@@ -14,11 +15,11 @@ const toRgbaCssValue = (hex: string, alpha: number = 1) => {
 }
 
 export const adaptColorsToCssVariables = (
-  penpotFile: PenpotExportFile,
+  penpotFile: PenpotApiFile,
 ): CSSClassDefinition => {
-  const { colors } = penpotFile
+  const colors = Object.values(penpotFile.data.colors ?? {})
 
-  const cssPropsEntries = Object.values(colors).map((color) => {
+  const cssPropsEntries = colors.map((color) => {
     const objectClassName = textToCssCustomProperyName(color.name)
 
     return [objectClassName, toRgbaCssValue(color.color, color.opacity)]

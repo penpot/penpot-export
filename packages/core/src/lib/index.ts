@@ -24,7 +24,7 @@ export default async function penpotExport(
       fileId: fileConfig.fileId,
     })
 
-    console.log('🎨 Processing Penpot file: %s', penpotFile.fileName)
+    console.log('🎨 Processing Penpot file: %s', penpotFile.name)
 
     for (const colorsConfig of fileConfig.colors) {
       const cssPath = path.resolve(rootProjectPath, colorsConfig.output)
