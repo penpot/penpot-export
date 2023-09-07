@@ -3,7 +3,6 @@ import {
   isComponent,
   pickObjectProps,
 } from '../../api/helpers'
-import { textToCssClassSelector } from '../../css/helpers'
 
 import { PenpotApiFile, PenpotApiObject } from '../../api'
 import { CSSClassDefinition } from '../../types'
@@ -51,8 +50,11 @@ export const adaptPageComponentsToCssClassDefinitions = (
       const object = component.objects[objectId]
       if (object.type === 'text') {
         const cssProps = getTextObjectCssProps(object)
-        const selector = textToCssClassSelector(`${page.name}--${object.name}`)
-        cssClassDefinitions.push({ selector, cssProps })
+        cssClassDefinitions.push({
+          scope: page.name,
+          name: object.name,
+          cssProps,
+        })
       }
     }
   }

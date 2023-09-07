@@ -1,5 +1,3 @@
-import { textToCssIdentToken } from '../../css/helpers'
-
 import { PenpotApiFile } from '../../api'
 import { CSSCustomPropertyDefinition } from '../../types'
 
@@ -17,13 +15,13 @@ const toRgbaCssValue = (hex: string, alpha: number = 1) => {
 export const adaptColorsToCssVariables = (
   penpotFile: PenpotApiFile,
 ): CSSCustomPropertyDefinition[] => {
+  const fileName = penpotFile.name
   const colors = Object.values(penpotFile.data.colors ?? {})
 
   const cssPropsEntries = colors.map((color) => {
-    const objectClassName = textToCssIdentToken(color.name)
-
     return {
-      name: objectClassName,
+      scope: fileName,
+      name: color.name,
       value: toRgbaCssValue(color.color, color.opacity),
     }
   })

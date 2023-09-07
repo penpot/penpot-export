@@ -1,14 +1,17 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-import { textToCssCustomProperyName } from '../css/helpers'
+import {
+  camelToKebab,
+  textToCssClassSelector,
+  textToCssCustomPropertyName,
+} from './syntax'
 
-import { camelToKebab } from '../string'
 import {
   CSSClassDefinition,
   CSSCustomPropertyDefinition,
   isCssClassDefinition,
-} from '../types'
+} from '../../types'
 
 const areCssCustomPropertiesDefinitions = (
   objects: Array<object>,
@@ -17,11 +20,14 @@ const areCssCustomPropertiesDefinitions = (
 }
 
 const serializeCssClass = (cssClassDefinition: CSSClassDefinition): string => {
+  const selector = textToCssClassSelector(
+    `${cssClassDefinition.scope}--${cssClassDefinition.name}`,
+  )
   const cssValidProps = Object.keys(cssClassDefinition.cssProps).map(
     (key) => `  ${camelToKebab(key)}: ${cssClassDefinition.cssProps[key]};`,
   )
 
-  return [`${cssClassDefinition.selector} {`, ...cssValidProps, '}'].join('\n')
+  return [`${selector} {`, ...cssValidProps, '}'].join('\n')
 }
 
 const serializeCssCustomProperty = (
@@ -29,9 +35,10 @@ const serializeCssCustomProperty = (
   pad: number,
 ): string => {
   const { name, value } = cssCustomProperty
+  const key = textToCssCustomPropertyName(name)
   const padding = ' '.repeat(pad)
 
-  return `${padding}${textToCssCustomProperyName(name)}: ${value};`
+  return `${padding}${key}: ${value};`
 }
 
 const serializeCss = (

@@ -1,3 +1,7 @@
+export function camelToKebab(str: string) {
+  return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
+}
+
 /** From: https://www.w3.org/TR/css-syntax-3/#escaping
  * Any Unicode code point can be included in an ident sequence or quoted string by escaping it. CSS escape sequences
  * start with a backslash (\), and continue with:
@@ -70,7 +74,7 @@ export function textToCssClassSelector(str: string) {
  * case-sensitive (meaning they’re compared using the "identical to" operation), even in the ASCII range (e.g. example
  * and EXAMPLE are two different, unrelated user-defined identifiers).
  */
-export function textToCssCustomProperyName(str: string) {
+export function textToCssCustomPropertyName(str: string) {
   const unescapedDashedIdentifier = '--' + str.trimStart()
   return textToCssIdentToken(unescapedDashedIdentifier)
 }

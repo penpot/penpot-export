@@ -1,9 +1,9 @@
 import assert from 'node:assert'
 import { describe, it } from 'node:test'
 
-import { textToCssIdentToken } from './helpers'
+import { textToCssIdentToken } from './syntax'
 
-describe('CSS helpers', () => {
+describe('CSS syntax helpers', () => {
   describe('Transforming text to CSS ident tokens', () => {
     describe('when input text includes ASCII printable characters', () => {
       it('escapes all ASCII printable characters except ident code points (-, 0-9, A-Z, _, a-z)', () => {

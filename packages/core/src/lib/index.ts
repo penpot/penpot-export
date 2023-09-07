@@ -1,6 +1,6 @@
 import path from 'node:path'
 
-import { adaptTypographiesToCssClassDefinitions } from './adapters/inbound/typographyToCssClasses'
+import { adaptTypographiesToCssClassDefinitions } from './adapters/inbound/typographiesToCssClasses'
 import { adaptColorsToCssVariables } from './adapters/inbound/colorsToCssVariables'
 import { adaptPageComponentsToCssClassDefinitions } from './adapters/inbound/pageComponentsToCssClasses'
 
