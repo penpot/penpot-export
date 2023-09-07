@@ -11,7 +11,7 @@ import {
   normalizePenpotExportUserConfig,
   AssetConfig,
 } from './config'
-import { writeJsonFile, writeCssFile } from './outputters'
+import { writeJsonFile, writeCssFile, writeScssFile } from './outputters'
 import { CSSClassDefinition, CSSCustomPropertyDefinition } from './types'
 
 const processOutput = ({
@@ -25,6 +25,9 @@ const processOutput = ({
 }) => {
   if (outputFormat === 'css') {
     return writeCssFile(outputPath, content)
+  }
+  if (outputFormat === 'scss') {
+    return writeScssFile(outputPath, content)
   }
   if (outputFormat === 'json') {
     return writeJsonFile(outputPath, content)

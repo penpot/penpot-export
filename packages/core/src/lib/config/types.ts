@@ -3,7 +3,7 @@ import { parseUserConfig } from './userConfig'
 // Types
 export interface AssetConfig {
   output: string
-  format: 'css' | 'json'
+  format: 'css' | 'scss' | 'json'
 }
 
 export interface ColorsConfig extends AssetConfig {}

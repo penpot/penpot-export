@@ -33,7 +33,11 @@ const outputPathSchema = z.string({
   required_error: '.output is required',
   invalid_type_error: '.output must be a string',
 })
-const outputFormatSchema = z.union([z.literal('css'), z.literal('json')])
+const outputFormatSchema = z.union([
+  z.literal('css'),
+  z.literal('scss'),
+  z.literal('json'),
+])
 
 const assetConfigSchema = z.object({
   output: outputPathSchema,

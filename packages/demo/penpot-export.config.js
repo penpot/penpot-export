@@ -33,6 +33,10 @@ const config = {
           output: 'src/styles/colors.css', // 👈 Path where your CSS file should be generated.
         },
         {
+          output: 'src/styles/colors.scss', // 👈 Path where your SCSS file should be generated.
+          format: 'scss',
+        },
+        {
           output: 'src/styles/colors.json', // 👈 Path where your JSON file should be generated.
           format: 'json',
         },
@@ -40,6 +44,10 @@ const config = {
       typographies: [
         {
           output: 'src/styles/typographies.css', // 👈 Path where your CSS file should be generated.
+        },
+        {
+          output: 'src/styles/typographies.scss', // 👈 Path where your SCSS file should be generated.
+          format: 'scss',
         },
         {
           output: 'src/styles/typographies.json', // 👈 Path where your JSON file should be generated.
