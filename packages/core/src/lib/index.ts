@@ -11,7 +11,12 @@ import {
   normalizePenpotExportUserConfig,
   AssetConfig,
 } from './config'
-import { writeJsonFile, writeCssFile, writeScssFile } from './outputters'
+import {
+  writeTextFile,
+  cssOutputter,
+  scssOutputter,
+  jsonOutputter,
+} from './outputters'
 import { CSSClassDefinition, CSSCustomPropertyDefinition } from './types'
 
 const processOutput = ({
@@ -24,13 +29,13 @@ const processOutput = ({
   content: CSSClassDefinition[] | CSSCustomPropertyDefinition[]
 }) => {
   if (outputFormat === 'css') {
-    return writeCssFile(outputPath, content)
+    return writeTextFile(outputPath, cssOutputter, content)
   }
   if (outputFormat === 'scss') {
-    return writeScssFile(outputPath, content)
+    return writeTextFile(outputPath, scssOutputter, content)
   }
   if (outputFormat === 'json') {
-    return writeJsonFile(outputPath, content)
+    return writeTextFile(outputPath, jsonOutputter, content)
   }
   throw new Error(
     'Unable to process output format. This is an error in penpot-export code, please contact their authors.',

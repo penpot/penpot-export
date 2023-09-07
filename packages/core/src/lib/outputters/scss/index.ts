@@ -1,6 +1,3 @@
-import fs from 'node:fs'
-import path from 'node:path'
-
 import {
   CSSClassDefinition,
   CSSCustomPropertyDefinition,
@@ -8,6 +5,8 @@ import {
 } from '../../types'
 
 import { camelToKebab } from '../css/syntax'
+
+import { OutputterFunction } from '../types'
 
 import { textToScssVariableName } from './syntax'
 
@@ -40,7 +39,7 @@ const serializeScssVariable = (
   return `${property}: ${value};`
 }
 
-const serializeScss = (
+const serializeScss: OutputterFunction = (
   cssDefinitions: CSSClassDefinition[] | CSSCustomPropertyDefinition[],
 ): string => {
   if (areCssCustomPropertiesDefinitions(cssDefinitions)) {
@@ -53,16 +52,4 @@ const serializeScss = (
   }
 }
 
-export function writeScssFile(
-  outputPath: string,
-  cssDefinitions: CSSClassDefinition[] | CSSCustomPropertyDefinition[],
-) {
-  const css = serializeScss(cssDefinitions)
-  const dirname = path.dirname(outputPath)
-
-  if (!fs.existsSync(dirname)) {
-    fs.mkdirSync(dirname, { recursive: true })
-  }
-
-  fs.writeFileSync(outputPath, css, 'utf-8')
-}
+export default serializeScss

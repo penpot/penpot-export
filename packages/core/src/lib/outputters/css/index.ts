@@ -1,17 +1,16 @@
-import fs from 'node:fs'
-import path from 'node:path'
+import {
+  CSSClassDefinition,
+  CSSCustomPropertyDefinition,
+  isCssClassDefinition,
+} from '../../types'
+
+import { OutputterFunction } from '../types'
 
 import {
   camelToKebab,
   textToCssClassSelector,
   textToCssCustomPropertyName,
 } from './syntax'
-
-import {
-  CSSClassDefinition,
-  CSSCustomPropertyDefinition,
-  isCssClassDefinition,
-} from '../../types'
 
 const areCssCustomPropertiesDefinitions = (
   objects: Array<object>,
@@ -41,7 +40,7 @@ const serializeCssCustomProperty = (
   return `${padding}${key}: ${value};`
 }
 
-const serializeCss = (
+const serializeCss: OutputterFunction = (
   cssDefinitions: CSSClassDefinition[] | CSSCustomPropertyDefinition[],
 ): string => {
   if (areCssCustomPropertiesDefinitions(cssDefinitions)) {
@@ -55,16 +54,4 @@ const serializeCss = (
   }
 }
 
-export function writeCssFile(
-  outputPath: string,
-  cssDefinitions: CSSClassDefinition[] | CSSCustomPropertyDefinition[],
-) {
-  const css = serializeCss(cssDefinitions)
-  const dirname = path.dirname(outputPath)
-
-  if (!fs.existsSync(dirname)) {
-    fs.mkdirSync(dirname, { recursive: true })
-  }
-
-  fs.writeFileSync(outputPath, css, 'utf-8')
-}
+export default serializeCss
