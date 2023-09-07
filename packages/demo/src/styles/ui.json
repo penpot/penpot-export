@@ -1,6 +1,7 @@
 [
   {
-    "selector": ".Variables--H5",
+    "scope": "Variables",
+    "name": "H5",
     "cssProps": {
       "fontStyle": "normal",
       "fontSize": "18px",
@@ -10,7 +11,8 @@
     }
   },
   {
-    "selector": ".Variables--H4",
+    "scope": "Variables",
+    "name": "H4",
     "cssProps": {
       "fontStyle": "normal",
       "fontSize": "24px",
@@ -20,7 +22,8 @@
     }
   },
   {
-    "selector": ".Variables--H1",
+    "scope": "Variables",
+    "name": "H1",
     "cssProps": {
       "fontStyle": "normal",
       "fontSize": "72px",
@@ -30,7 +33,8 @@
     }
   },
   {
-    "selector": ".Variables--H5",
+    "scope": "Variables",
+    "name": "H5",
     "cssProps": {
       "fontStyle": "normal",
       "fontSize": "48px",
@@ -40,7 +44,8 @@
     }
   },
   {
-    "selector": ".Variables--Body",
+    "scope": "Variables",
+    "name": "Body",
     "cssProps": {
       "fontStyle": "normal",
       "fontSize": "14px",
@@ -50,7 +55,8 @@
     }
   },
   {
-    "selector": ".Variables--H4",
+    "scope": "Variables",
+    "name": "H4",
     "cssProps": {
       "fontStyle": "normal",
       "fontSize": "36px",

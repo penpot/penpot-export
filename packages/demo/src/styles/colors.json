@@ -1,110 +1,137 @@
 [
   {
-    "name": "Primary_900",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Primary 900",
     "value": "rgba(0, 110, 84, 1)"
   },
   {
-    "name": "Secondary_500",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Secondary 500",
     "value": "rgba(191, 152, 254, 1)"
   },
   {
-    "name": "Secondary_400",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Secondary 400",
     "value": "rgba(207, 179, 255, 1)"
   },
   {
-    "name": "Neutral_100",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Neutral 100",
     "value": "rgba(247, 248, 249, 1)"
   },
   {
-    "name": "Neutral_500",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Neutral 500",
     "value": "rgba(133, 144, 162, 1)"
   },
   {
-    "name": "Primary_200",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Primary 200",
     "value": "rgba(202, 255, 233, 1)"
   },
   {
-    "name": "Secondary_800",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Secondary 800",
     "value": "rgba(105, 31, 209, 1)"
   },
   {
-    "name": "Primary_100",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Primary 100",
     "value": "rgba(233, 255, 247, 1)"
   },
   {
-    "name": "Secondary_200",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Secondary 200",
     "value": "rgba(240, 232, 255, 1)"
   },
   {
-    "name": "Neutral_200",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Neutral 200",
     "value": "rgba(241, 242, 244, 1)"
   },
   {
-    "name": "Neutral_300",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Neutral 300",
     "value": "rgba(220, 223, 228, 1)"
   },
   {
-    "name": "Neutral_700",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Neutral 700",
     "value": "rgba(98, 111, 134, 1)"
   },
   {
-    "name": "Neutral_400",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Neutral 400",
     "value": "rgba(179, 185, 196, 1)"
   },
   {
-    "name": "Neutral_600",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Neutral 600",
     "value": "rgba(117, 129, 149, 1)"
   },
   {
-    "name": "Secondary_600",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Secondary 600",
     "value": "rgba(148, 83, 249, 1)"
   },
   {
-    "name": "Primary_300",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Primary 300",
     "value": "rgba(154, 255, 217, 1)"
   },
   {
-    "name": "Primary_400",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Primary 400",
     "value": "rgba(90, 251, 199, 1)"
   },
   {
-    "name": "Secondary_300",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Secondary 300",
     "value": "rgba(228, 212, 255, 1)"
   },
   {
-    "name": "Primary_800",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Primary 800",
     "value": "rgba(0, 139, 105, 1)"
   },
   {
-    "name": "Neutral_900",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Neutral 900",
     "value": "rgba(23, 43, 77, 1)"
   },
   {
-    "name": "Neutral_800",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Neutral 800",
     "value": "rgba(68, 84, 111, 1)"
   },
   {
-    "name": "Secondary_900",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Secondary 900",
     "value": "rgba(91, 31, 170, 1)"
   },
   {
-    "name": "Primary_700",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Primary 700",
     "value": "rgba(0, 174, 127, 1)"
   },
   {
-    "name": "Secondary_700",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Secondary 700",
     "value": "rgba(125, 48, 237, 1)"
   },
   {
-    "name": "Primary_500",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Primary 500",
     "value": "rgba(49, 239, 184, 1)"
   },
   {
-    "name": "Secondary_100",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Secondary 100",
     "value": "rgba(249, 245, 255, 1)"
   },
   {
-    "name": "Primary_600",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Primary 600",
     "value": "rgba(0, 213, 154, 1)"
   }
 ]

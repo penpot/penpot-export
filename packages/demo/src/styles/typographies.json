@@ -1,6 +1,7 @@
 [
   {
-    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--🖥_Title_Medium",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "🖥 Title Medium",
     "cssProps": {
       "lineHeight": "1.2000000000000002",
       "fontStyle": "normal",
@@ -12,93 +13,114 @@
     }
   },
   {
-    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--📱_Title_Medium",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "📱 Title Medium",
     "cssProps": {
       "lineHeight": "1.2000000000000002",
       "fontStyle": "normal",
       "textTransform": "none",
       "fontWeight": "700",
-      "fontSize": "35px",
+      "fontSize": "37px",
       "letterSpacing": "0px",
       "fontFamily": "\"Work Sans\""
     }
   },
   {
-    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--🖥_Title_Large",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Body Small Uppercase",
     "cssProps": {
-      "lineHeight": "1.1",
+      "lineHeight": "1.4",
+      "fontStyle": "normal",
+      "textTransform": "uppercase",
+      "fontWeight": "400",
+      "fontSize": "15px",
+      "letterSpacing": "1px",
+      "fontFamily": "\"Work Sans\""
+    }
+  },
+  {
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "🖥 Title Large",
+    "cssProps": {
+      "lineHeight": "1.2",
       "fontStyle": "normal",
       "textTransform": "none",
       "fontWeight": "700",
-      "fontSize": "85px",
+      "fontSize": "77px",
       "letterSpacing": "0px",
       "fontFamily": "\"Work Sans\""
     }
   },
   {
-    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--Body_Large",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Body Large",
     "cssProps": {
-      "lineHeight": "1.2",
+      "lineHeight": "1.4",
       "fontStyle": "normal",
       "textTransform": "none",
       "fontWeight": "400",
-      "fontSize": "22px",
+      "fontSize": "21px",
       "letterSpacing": "0px",
       "fontFamily": "\"Work Sans\""
     }
   },
   {
-    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--📱_Title_Small",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "📱 Title Small",
     "cssProps": {
       "lineHeight": "1.2000000000000002",
       "fontStyle": "normal",
       "textTransform": "none",
       "fontWeight": "700",
-      "fontSize": "28px",
+      "fontSize": "31px",
       "letterSpacing": "0px",
       "fontFamily": "\"Work Sans\""
     }
   },
   {
-    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--🖥_Title_Small",
-    "cssProps": {
-      "lineHeight": "1.2000000000000002",
-      "fontStyle": "normal",
-      "textTransform": "none",
-      "fontWeight": "700",
-      "fontSize": "35px",
-      "letterSpacing": "0px",
-      "fontFamily": "\"Work Sans\""
-    }
-  },
-  {
-    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--Body_Small",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "🖥 Title Small",
     "cssProps": {
       "lineHeight": "1.2",
+      "fontStyle": "normal",
+      "textTransform": "none",
+      "fontWeight": "700",
+      "fontSize": "31px",
+      "letterSpacing": "0px",
+      "fontFamily": "\"Work Sans\""
+    }
+  },
+  {
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Body Small",
+    "cssProps": {
+      "lineHeight": "1.4",
       "fontStyle": "normal",
       "textTransform": "none",
       "fontWeight": "400",
-      "fontSize": "14px",
+      "fontSize": "15px",
       "letterSpacing": "0px",
       "fontFamily": "\"Work Sans\""
     }
   },
   {
-    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--📱_Title_Large",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "📱 Title Large",
     "cssProps": {
-      "lineHeight": "1",
+      "lineHeight": "1.2",
       "fontStyle": "normal",
       "textTransform": "none",
       "fontWeight": "700",
-      "fontSize": "44px",
+      "fontSize": "45px",
       "letterSpacing": "0px",
       "fontFamily": "\"Work Sans\""
     }
   },
   {
-    "selector": ".EasyFest\\:_Design_System_\\&_Landing_page--Body_Medium",
+    "scope": "EasyFest: Design System & Landing page",
+    "name": "Body Medium",
     "cssProps": {
-      "lineHeight": "1.2",
+      "lineHeight": "1.4",
       "fontStyle": "normal",
       "textTransform": "none",
       "fontWeight": "400",
