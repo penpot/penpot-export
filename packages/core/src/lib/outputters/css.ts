@@ -24,22 +24,25 @@ const serializeCssClass = (cssClassDefinition: CSSClassDefinition): string => {
   return [`${cssClassDefinition.selector} {`, ...cssValidProps, '}'].join('\n')
 }
 
-const serializeCssCustomProperties = (
-  cssCustomProperties: CSSCustomPropertyDefinition[],
+const serializeCssCustomProperty = (
+  cssCustomProperty: CSSCustomPropertyDefinition,
+  pad: number,
 ): string => {
-  const selector = ':root'
-  const cssDeclarations = cssCustomProperties.map(
-    ({ name, value }) => `  ${textToCssCustomProperyName(name)}: ${value};`,
-  )
+  const { name, value } = cssCustomProperty
+  const padding = ' '.repeat(pad)
 
-  return [`${selector} {`, ...cssDeclarations, '}'].join('\n')
+  return `${padding}${textToCssCustomProperyName(name)}: ${value};`
 }
 
 const serializeCss = (
   cssDefinitions: CSSClassDefinition[] | CSSCustomPropertyDefinition[],
 ): string => {
   if (areCssCustomPropertiesDefinitions(cssDefinitions)) {
-    return serializeCssCustomProperties(cssDefinitions)
+    const pad = 2
+    const cssDeclarations = cssDefinitions.map((customPropertyDefinition) =>
+      serializeCssCustomProperty(customPropertyDefinition, pad),
+    )
+    return [`:root {`, ...cssDeclarations, '}'].join('\n')
   } else {
     return cssDefinitions.map(serializeCssClass).join('\n\n')
   }
