@@ -1,18 +1,13 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-import { OutputterFunction } from './types'
-
 export { default as cssOutputter } from './css'
 export { default as scssOutputter } from './scss'
 export { default as jsonOutputter } from './json'
 
-export function writeTextFile(
-  outputPath: string,
-  outputter: OutputterFunction,
-  ...outputterParams: Parameters<OutputterFunction>
-) {
-  const textContents = outputter(...outputterParams)
+export type { OutputterFunction } from './types'
+
+export function writeTextFile(outputPath: string, textContents: string) {
   const dirname = path.dirname(outputPath)
 
   if (!fs.existsSync(dirname)) {

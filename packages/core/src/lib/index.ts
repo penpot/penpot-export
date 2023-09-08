@@ -1,6 +1,7 @@
 import path from 'node:path'
 
 import { adaptTypographiesToCssClassDefinitions } from './adapters/inbound/typographiesToCssClasses'
+import { summarizeTypographies } from './adapters/inbound/typographiesToFontSummary'
 import { adaptColorsToCssVariables } from './adapters/inbound/colorsToCssVariables'
 import { adaptPageComponentsToCssClassDefinitions } from './adapters/inbound/pageComponentsToCssClasses'
 
@@ -16,30 +17,41 @@ import {
   cssOutputter,
   scssOutputter,
   jsonOutputter,
+  OutputterFunction,
 } from './outputters'
-import { CSSClassDefinition, CSSCustomPropertyDefinition } from './types'
+import {
+  CSSClassDefinition,
+  CSSCustomPropertyDefinition,
+  FontsSummary,
+} from './types'
 
 const processOutput = ({
   outputFormat = 'css',
   outputPath,
   content,
+  metadata,
 }: {
   outputFormat: AssetConfig['format']
   outputPath: string
   content: CSSClassDefinition[] | CSSCustomPropertyDefinition[]
+  metadata?: FontsSummary
 }) => {
-  if (outputFormat === 'css') {
-    return writeTextFile(outputPath, cssOutputter, content)
-  }
-  if (outputFormat === 'scss') {
-    return writeTextFile(outputPath, scssOutputter, content)
-  }
-  if (outputFormat === 'json') {
-    return writeTextFile(outputPath, jsonOutputter, content)
-  }
-  throw new Error(
-    'Unable to process output format. This is an error in penpot-export code, please contact their authors.',
-  )
+  const outputter: OutputterFunction | null =
+    outputFormat === 'css'
+      ? cssOutputter
+      : outputFormat === 'scss'
+      ? scssOutputter
+      : outputFormat === 'json'
+      ? jsonOutputter
+      : null
+
+  if (outputter === null)
+    throw new Error(
+      'Unable to process output format. This is an error in penpot-export code, please contact their authors.',
+    )
+
+  const textContents = outputter(content, metadata)
+  return writeTextFile(outputPath, textContents)
 }
 
 export type * from './types'
@@ -78,6 +90,7 @@ export default async function penpotExport(
         outputFormat: typographiesConfig.format,
         outputPath: path.resolve(rootProjectPath, typographiesConfig.output),
         content: adaptTypographiesToCssClassDefinitions(penpotFile),
+        metadata: summarizeTypographies(penpotFile),
       })
 
       console.log('✅ Typographies: %s', typographiesConfig.output)

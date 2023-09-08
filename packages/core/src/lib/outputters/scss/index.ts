@@ -1,11 +1,13 @@
 import {
   CSSClassDefinition,
   CSSCustomPropertyDefinition,
+  FontsSummary,
   isCssClassDefinition,
 } from '../../types'
 
 import { camelToKebab } from '../css/syntax'
 
+import { describeFontsRequirements } from '../fileHeader'
 import { OutputterFunction } from '../types'
 
 import { textToScssVariableName } from './syntax'
@@ -39,9 +41,15 @@ const serializeScssVariable = (
   return `${property}: ${value};`
 }
 
-const serializeScss: OutputterFunction = (
+const composeFileHeader = (fontsSummary: FontsSummary) => {
+  const message = describeFontsRequirements(fontsSummary)
+
+  return message.map((line) => '// ' + line).join('\n')
+}
+
+const composeFileBody = (
   cssDefinitions: CSSClassDefinition[] | CSSCustomPropertyDefinition[],
-): string => {
+) => {
   if (areCssCustomPropertiesDefinitions(cssDefinitions)) {
     const cssDeclarations = cssDefinitions.map((customPropertyDefinition) =>
       serializeScssVariable(customPropertyDefinition),
@@ -50,6 +58,18 @@ const serializeScss: OutputterFunction = (
   } else {
     return cssDefinitions.map(serializeScssMap).join('\n\n')
   }
+}
+
+const serializeScss: OutputterFunction = (
+  cssDefinitions: CSSClassDefinition[] | CSSCustomPropertyDefinition[],
+  fontsSummary?: FontsSummary,
+): string => {
+  const body: string = composeFileBody(cssDefinitions)
+
+  if (fontsSummary === undefined) return body
+
+  const header: string = composeFileHeader(fontsSummary)
+  return header + '\n\n' + body
 }
 
 export default serializeScss
