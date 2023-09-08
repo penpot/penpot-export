@@ -1,9 +1,11 @@
 import {
   CSSClassDefinition,
   CSSCustomPropertyDefinition,
+  FontsSummary,
   isCssClassDefinition,
 } from '../../types'
 
+import { describeFontsRequirements } from '../fileHeader'
 import { OutputterFunction } from '../types'
 
 import {
@@ -40,9 +42,15 @@ const serializeCssCustomProperty = (
   return `${padding}${key}: ${value};`
 }
 
-const serializeCss: OutputterFunction = (
+const composeFileHeader = (fontsSummary: FontsSummary) => {
+  const message = describeFontsRequirements(fontsSummary)
+
+  return ['/*', ...message.map((line) => ' * ' + line), '*/'].join('\n')
+}
+
+const composeFileBody = (
   cssDefinitions: CSSClassDefinition[] | CSSCustomPropertyDefinition[],
-): string => {
+) => {
   if (areCssCustomPropertiesDefinitions(cssDefinitions)) {
     const pad = 2
     const cssDeclarations = cssDefinitions.map((customPropertyDefinition) =>
@@ -52,6 +60,18 @@ const serializeCss: OutputterFunction = (
   } else {
     return cssDefinitions.map(serializeCssClass).join('\n\n')
   }
+}
+
+const serializeCss: OutputterFunction = (
+  cssDefinitions: CSSClassDefinition[] | CSSCustomPropertyDefinition[],
+  fontsSummary?: FontsSummary,
+): string => {
+  const body: string = composeFileBody(cssDefinitions)
+
+  if (fontsSummary === undefined) return body
+
+  const header: string = composeFileHeader(fontsSummary)
+  return header + '\n\n' + body
 }
 
 export default serializeCss
