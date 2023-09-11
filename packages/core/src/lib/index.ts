@@ -54,8 +54,6 @@ const processOutput = ({
   return writeTextFile(outputPath, textContents)
 }
 
-export type * from './types'
-
 export default async function penpotExport(
   userConfig: object,
   rootProjectPath: string,
@@ -109,3 +107,5 @@ export default async function penpotExport(
     }
   }
 }
+
+export type * from './types'

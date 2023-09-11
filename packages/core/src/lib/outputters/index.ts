@@ -1,12 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-export { default as cssOutputter } from './css'
-export { default as scssOutputter } from './scss'
-export { default as jsonOutputter } from './json'
-
-export type { OutputterFunction } from './types'
-
 export function writeTextFile(outputPath: string, textContents: string) {
   const dirname = path.dirname(outputPath)
 
@@ -16,3 +10,9 @@ export function writeTextFile(outputPath: string, textContents: string) {
 
   fs.writeFileSync(outputPath, textContents, 'utf-8')
 }
+
+export { default as cssOutputter } from './css'
+export { default as scssOutputter } from './scss'
+export { default as jsonOutputter } from './json'
+
+export type { OutputterFunction } from './types'
