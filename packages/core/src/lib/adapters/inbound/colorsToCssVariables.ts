@@ -1,15 +1,23 @@
 import { PenpotApiFile } from '../../api'
 import { CSSCustomPropertyDefinition } from '../../types'
 
-const toRgbaCssValue = (hex: string, alpha: number = 1) => {
-  const channels = hex.match(/\w{2}/g)
-  if (channels === null || channels.length !== 3)
+const toHexQuartet = (hexTriplet: string, alpha: number = 1) => {
+  const alphaChannel = Math.trunc(alpha * 0x100) - 1
+  if (alphaChannel < 0 || alphaChannel > 0xff)
+    throw new Error(
+      'Invalid alpha (opacity) number: requires a decimal value between 0 and 1.0',
+    )
+
+  const rgbChannels = hexTriplet.match(/\w{2}/g)
+  if (rgbChannels === null || rgbChannels.length !== 3)
     throw new Error(
       'Invalid RGB value provided: requires 8-bit hexadecimal value per channel',
     )
 
-  const [r, g, b] = channels.map((channelHex) => parseInt(channelHex, 16))
-  return `rgba(${[r, g, b, alpha].join(', ')})`
+  const [RR, GG, BB] = rgbChannels
+  const AA = alphaChannel.toString(16).padStart(2, '0')
+
+  return ('#' + RR + GG + BB + AA).toLowerCase()
 }
 
 export const adaptColorsToCssVariables = (
@@ -22,7 +30,7 @@ export const adaptColorsToCssVariables = (
     return {
       scope: fileName,
       name: color.name,
-      value: toRgbaCssValue(color.color, color.opacity),
+      value: toHexQuartet(color.color, color.opacity),
     }
   })
 
