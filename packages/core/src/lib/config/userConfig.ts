@@ -48,6 +48,9 @@ const colorsConfigSchema = assetConfigSchema
 const typographiesConfigSchema = assetConfigSchema
 const pagesConfigSchema = assetConfigSchema.extend({
   pageId: pageIdSchema,
+  format: z
+    .optional(z.union([z.literal('css'), z.literal('scss')]))
+    .default('css'),
 })
 
 const userFileConfigSchema = z
