@@ -1,10 +1,3 @@
-import {
-  CSSClassDefinition,
-  CSSCustomPropertyDefinition,
-  FontsSummary,
-} from '../types'
+import { PenpotExportAssets } from '../types'
 
-export type OutputterFunction = (
-  cssDefinitions: CSSClassDefinition[] | CSSCustomPropertyDefinition[],
-  metadata?: FontsSummary,
-) => string
+export type OutputterFunction = (assets: PenpotExportAssets) => string

@@ -1,10 +1,13 @@
 import {
   CSSClassDefinition,
   CSSCustomPropertyDefinition,
+  ColorAssets,
   FontsSummary,
-  isCssClassDefinition,
+  PageComponentAssets,
+  TypographyAssets,
 } from '../../types'
 
+import { PenpotExportInvalidAssetsError } from '../errors'
 import { describeFontsRequirements } from '../fileHeader'
 import { OutputterFunction } from '../types'
 
@@ -13,12 +16,6 @@ import {
   textToCssClassSelector,
   textToCssCustomPropertyName,
 } from './syntax'
-
-const areCssCustomPropertiesDefinitions = (
-  objects: Array<object>,
-): objects is Array<CSSCustomPropertyDefinition> => {
-  return !objects.every(isCssClassDefinition)
-}
 
 const serializeCssClass = (cssClassDefinition: CSSClassDefinition): string => {
   const selector = textToCssClassSelector(
@@ -42,36 +39,40 @@ const serializeCssCustomProperty = (
   return `${padding}${key}: ${value};`
 }
 
+const serializeCssCustomPropertiesRoot = (
+  cssDefinitions: CSSCustomPropertyDefinition[],
+) => {
+  const pad = 2
+  const cssDeclarations = cssDefinitions.map((customPropertyDefinition) =>
+    serializeCssCustomProperty(customPropertyDefinition, pad),
+  )
+  return [`:root {`, ...cssDeclarations, '}'].join('\n')
+}
+
 const composeFileHeader = (fontsSummary: FontsSummary) => {
   const message = describeFontsRequirements(fontsSummary)
 
   return ['/*', ...message.map((line) => ' * ' + line), '*/'].join('\n')
 }
 
-const composeFileBody = (
-  cssDefinitions: CSSClassDefinition[] | CSSCustomPropertyDefinition[],
-) => {
-  if (areCssCustomPropertiesDefinitions(cssDefinitions)) {
-    const pad = 2
-    const cssDeclarations = cssDefinitions.map((customPropertyDefinition) =>
-      serializeCssCustomProperty(customPropertyDefinition, pad),
-    )
-    return [`:root {`, ...cssDeclarations, '}'].join('\n')
-  } else {
-    return cssDefinitions.map(serializeCssClass).join('\n\n')
+const serializeCss: OutputterFunction = ({
+  colors,
+  typographies,
+  typographiesSummary,
+  pageComponents,
+}: ColorAssets | TypographyAssets | PageComponentAssets): string => {
+  if (colors) {
+    return serializeCssCustomPropertiesRoot(colors)
+  } else if (typographies) {
+    const body = typographies.map(serializeCssClass).join('\n\n')
+    const header: string = composeFileHeader(typographiesSummary)
+
+    return header + '\n\n' + body
+  } else if (pageComponents) {
+    return pageComponents.map(serializeCssClass).join('\n\n')
   }
-}
 
-const serializeCss: OutputterFunction = (
-  cssDefinitions: CSSClassDefinition[] | CSSCustomPropertyDefinition[],
-  fontsSummary?: FontsSummary,
-): string => {
-  const body: string = composeFileBody(cssDefinitions)
-
-  if (fontsSummary === undefined) return body
-
-  const header: string = composeFileHeader(fontsSummary)
-  return header + '\n\n' + body
+  throw new PenpotExportInvalidAssetsError()
 }
 
 export default serializeCss

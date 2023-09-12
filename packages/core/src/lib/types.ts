@@ -4,12 +4,6 @@ export interface CSSClassDefinition {
   cssProps: Record<string, string>
 }
 
-export const isCssClassDefinition = (
-  object: object,
-): object is CSSClassDefinition => {
-  return 'cssProps' in object
-}
-
 export interface CSSCustomPropertyDefinition {
   scope: string
   name: string
@@ -24,3 +18,27 @@ export interface FontsSummary {
   googleFonts: FontsDetails
   userCustomFonts: FontsDetails
 }
+
+interface BaseAssets {
+  colors?: never
+  typographies?: never
+  typographiesSummary?: never
+  pageComponents?: never
+}
+export interface ColorAssets extends Omit<BaseAssets, 'colors'> {
+  colors: CSSCustomPropertyDefinition[]
+}
+export interface TypographyAssets
+  extends Omit<BaseAssets, 'typographies' | 'typographiesSummary'> {
+  typographies: CSSClassDefinition[]
+  typographiesSummary: FontsSummary
+}
+export interface PageComponentAssets
+  extends Omit<BaseAssets, 'pageComponents'> {
+  pageComponents: CSSClassDefinition[]
+}
+
+export type PenpotExportAssets =
+  | ColorAssets
+  | TypographyAssets
+  | PageComponentAssets

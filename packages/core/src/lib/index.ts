@@ -12,6 +12,7 @@ import {
   normalizePenpotExportUserConfig,
   AssetConfig,
 } from './config'
+import { PenpotExportInternalError } from './errors'
 import {
   writeTextFile,
   cssOutputter,
@@ -19,22 +20,16 @@ import {
   jsonOutputter,
   OutputterFunction,
 } from './outputters'
-import {
-  CSSClassDefinition,
-  CSSCustomPropertyDefinition,
-  FontsSummary,
-} from './types'
+import { PenpotExportAssets } from './types'
 
 const processOutput = ({
   outputFormat = 'css',
   outputPath,
-  content,
-  metadata,
+  assets,
 }: {
   outputFormat: AssetConfig['format']
   outputPath: string
-  content: CSSClassDefinition[] | CSSCustomPropertyDefinition[]
-  metadata?: FontsSummary
+  assets: PenpotExportAssets
 }) => {
   const outputter: OutputterFunction | null =
     outputFormat === 'css'
@@ -46,11 +41,9 @@ const processOutput = ({
       : null
 
   if (outputter === null)
-    throw new Error(
-      'Unable to process output format. This is an error in penpot-export code, please contact their authors.',
-    )
+    throw new PenpotExportInternalError('Unable to process output format')
 
-  const textContents = outputter(content, metadata)
+  const textContents = outputter(assets)
   return writeTextFile(outputPath, textContents)
 }
 
@@ -77,7 +70,9 @@ export default async function penpotExport(
       processOutput({
         outputFormat: colorsConfig.format,
         outputPath: path.resolve(rootProjectPath, colorsConfig.output),
-        content: adaptColorsToCssVariables(penpotFile),
+        assets: {
+          colors: adaptColorsToCssVariables(penpotFile),
+        },
       })
 
       console.log('✅ Colors: %s', colorsConfig.output)
@@ -87,8 +82,10 @@ export default async function penpotExport(
       processOutput({
         outputFormat: typographiesConfig.format,
         outputPath: path.resolve(rootProjectPath, typographiesConfig.output),
-        content: adaptTypographiesToCssClassDefinitions(penpotFile),
-        metadata: summarizeTypographies(penpotFile),
+        assets: {
+          typographies: adaptTypographiesToCssClassDefinitions(penpotFile),
+          typographiesSummary: summarizeTypographies(penpotFile),
+        },
       })
 
       console.log('✅ Typographies: %s', typographiesConfig.output)
@@ -98,9 +95,11 @@ export default async function penpotExport(
       processOutput({
         outputFormat: pagesConfig.format,
         outputPath: path.resolve(rootProjectPath, pagesConfig.output),
-        content: adaptPageComponentsToCssClassDefinitions(penpotFile, {
-          pageId: pagesConfig.pageId,
-        }),
+        assets: {
+          pageComponents: adaptPageComponentsToCssClassDefinitions(penpotFile, {
+            pageId: pagesConfig.pageId,
+          }),
+        },
       })
 
       console.log('✅ Page components: %s', pagesConfig.output)

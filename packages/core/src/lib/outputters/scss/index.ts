@@ -1,22 +1,19 @@
 import {
   CSSClassDefinition,
   CSSCustomPropertyDefinition,
+  ColorAssets,
   FontsSummary,
-  isCssClassDefinition,
+  PageComponentAssets,
+  TypographyAssets,
 } from '../../types'
 
 import { camelToKebab } from '../css/syntax'
 
+import { PenpotExportInvalidAssetsError } from '../errors'
 import { describeFontsRequirements } from '../fileHeader'
 import { OutputterFunction } from '../types'
 
 import { textToScssVariableName } from './syntax'
-
-const areCssCustomPropertiesDefinitions = (
-  objects: Array<object>,
-): objects is Array<CSSCustomPropertyDefinition> => {
-  return !objects.every(isCssClassDefinition)
-}
 
 /**
  * From: https://sass-lang.com/documentation/values/maps/
@@ -47,29 +44,24 @@ const composeFileHeader = (fontsSummary: FontsSummary) => {
   return message.map((line) => '// ' + line).join('\n')
 }
 
-const composeFileBody = (
-  cssDefinitions: CSSClassDefinition[] | CSSCustomPropertyDefinition[],
-) => {
-  if (areCssCustomPropertiesDefinitions(cssDefinitions)) {
-    const cssDeclarations = cssDefinitions.map((customPropertyDefinition) =>
-      serializeScssVariable(customPropertyDefinition),
-    )
-    return cssDeclarations.join('\n')
-  } else {
-    return cssDefinitions.map(serializeScssMap).join('\n\n')
+const serializeScss: OutputterFunction = ({
+  colors,
+  typographies,
+  typographiesSummary,
+  pageComponents,
+}: ColorAssets | TypographyAssets | PageComponentAssets): string => {
+  if (colors) {
+    return colors.map(serializeScssVariable).join('\n')
+  } else if (typographies) {
+    const body = typographies.map(serializeScssMap).join('\n\n')
+    const header: string = composeFileHeader(typographiesSummary)
+
+    return header + '\n\n' + body
+  } else if (pageComponents) {
+    return pageComponents.map(serializeScssMap).join('\n\n')
   }
-}
 
-const serializeScss: OutputterFunction = (
-  cssDefinitions: CSSClassDefinition[] | CSSCustomPropertyDefinition[],
-  fontsSummary?: FontsSummary,
-): string => {
-  const body: string = composeFileBody(cssDefinitions)
-
-  if (fontsSummary === undefined) return body
-
-  const header: string = composeFileHeader(fontsSummary)
-  return header + '\n\n' + body
+  throw new PenpotExportInvalidAssetsError()
 }
 
 export default serializeScss
