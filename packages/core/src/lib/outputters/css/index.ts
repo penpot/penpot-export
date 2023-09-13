@@ -18,9 +18,8 @@ import {
 } from './syntax'
 
 const serializeCssClass = (cssClassDefinition: CSSClassDefinition): string => {
-  const selector = textToCssClassSelector(
-    `${cssClassDefinition.scope}--${cssClassDefinition.name}`,
-  )
+  const selector = textToCssClassSelector(cssClassDefinition.name)
+
   const cssValidProps = Object.keys(cssClassDefinition.cssProps).map(
     (key) => `  ${camelToKebab(key)}: ${cssClassDefinition.cssProps[key]};`,
   )
@@ -56,6 +55,7 @@ const composeFileHeader = (fontsSummary: FontsSummary) => {
 }
 
 const serializeCss: OutputterFunction = ({
+  scope,
   colors,
   typographies,
   typographiesSummary,
@@ -64,7 +64,7 @@ const serializeCss: OutputterFunction = ({
   if (colors) {
     return serializeCssCustomPropertiesRoot(colors)
   } else if (typographies) {
-    const body = typographies.map(serializeCssClass).join('\n\n')
+    const body: string = typographies.map(serializeCssClass).join('\n\n')
     const header: string = composeFileHeader(typographiesSummary)
 
     return header + '\n\n' + body

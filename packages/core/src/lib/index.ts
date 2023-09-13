@@ -1,12 +1,11 @@
 import path from 'node:path'
 
-import { adaptTypographiesToCssClassDefinitions } from './adapters/inbound/typographiesToCssClasses'
-import { summarizeTypographies } from './adapters/inbound/typographiesToFontSummary'
-import { adaptColorsToCssVariables } from './adapters/inbound/colorsToCssVariables'
-import { adaptPageComponentsToCssClassDefinitions } from './adapters/inbound/pageComponentsToCssClasses'
-
-import { Penpot } from './api/penpot'
-
+import {
+  default as PenpotApiClient,
+  adaptColors,
+  adaptTypographies,
+  adaptPageComponents,
+} from './api'
 import {
   parseUserConfig,
   normalizePenpotExportUserConfig,
@@ -20,17 +19,24 @@ import {
   jsonOutputter,
   OutputterFunction,
 } from './outputters'
+import {
+  scopeTypographiesClassNames,
+  scopePageComponentsClassNames,
+  TransformerFunction,
+} from './transformers'
 import { PenpotExportAssets } from './types'
 
-const processOutput = ({
-  outputFormat = 'css',
+function processOutput<T extends PenpotExportAssets>({
+  outputFormat,
   outputPath,
   assets,
+  transform,
 }: {
   outputFormat: AssetConfig['format']
   outputPath: string
-  assets: PenpotExportAssets
-}) => {
+  assets: T
+  transform?: TransformerFunction<T>
+}) {
   const outputter: OutputterFunction | null =
     outputFormat === 'css'
       ? cssOutputter
@@ -43,7 +49,8 @@ const processOutput = ({
   if (outputter === null)
     throw new PenpotExportInternalError('Unable to process output format')
 
-  const textContents = outputter(assets)
+  const transformedAssets = transform !== undefined ? transform(assets) : assets
+  const textContents = outputter(transformedAssets)
   return writeTextFile(outputPath, textContents)
 }
 
@@ -54,7 +61,7 @@ export default async function penpotExport(
   const parsedUserConfig = parseUserConfig(userConfig)
 
   const config = normalizePenpotExportUserConfig(parsedUserConfig)
-  const penpot = new Penpot({
+  const penpot = new PenpotApiClient({
     baseUrl: config.instance,
     accessToken: config.accessToken,
   })
@@ -70,9 +77,7 @@ export default async function penpotExport(
       processOutput({
         outputFormat: colorsConfig.format,
         outputPath: path.resolve(rootProjectPath, colorsConfig.output),
-        assets: {
-          colors: adaptColorsToCssVariables(penpotFile),
-        },
+        assets: adaptColors(penpotFile),
       })
 
       console.log('✅ Colors: %s', colorsConfig.output)
@@ -82,10 +87,11 @@ export default async function penpotExport(
       processOutput({
         outputFormat: typographiesConfig.format,
         outputPath: path.resolve(rootProjectPath, typographiesConfig.output),
-        assets: {
-          typographies: adaptTypographiesToCssClassDefinitions(penpotFile),
-          typographiesSummary: summarizeTypographies(penpotFile),
-        },
+        assets: adaptTypographies(penpotFile),
+        transform:
+          typographiesConfig.format === 'css'
+            ? scopeTypographiesClassNames
+            : undefined,
       })
 
       console.log('✅ Typographies: %s', typographiesConfig.output)
@@ -95,11 +101,13 @@ export default async function penpotExport(
       processOutput({
         outputFormat: pagesConfig.format,
         outputPath: path.resolve(rootProjectPath, pagesConfig.output),
-        assets: {
-          pageComponents: adaptPageComponentsToCssClassDefinitions(penpotFile, {
-            pageId: pagesConfig.pageId,
-          }),
-        },
+        assets: adaptPageComponents(penpotFile, {
+          pageId: pagesConfig.pageId,
+        }),
+        transform:
+          pagesConfig.format === 'css'
+            ? scopePageComponentsClassNames
+            : undefined,
       })
 
       console.log('✅ Page components: %s', pagesConfig.output)

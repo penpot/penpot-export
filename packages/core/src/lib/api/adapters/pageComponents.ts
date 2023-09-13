@@ -1,11 +1,11 @@
+import { CSSClassDefinition, PageComponentAssets } from '../../types'
+
 import {
   getObjectShapesFromPage,
   isComponent,
   pickObjectProps,
-} from '../../api/helpers'
-
-import { PenpotApiFile, PenpotApiObject } from '../../api'
-import { CSSClassDefinition } from '../../types'
+} from '../helpers'
+import { PenpotApiFile, PenpotApiObject } from '../types'
 
 const extractObjectCssProps = (object: PenpotApiObject) => {
   let { textDecoration, ...styles } = object.positionData[0]
@@ -33,10 +33,10 @@ const getTextObjectCssProps = (object: PenpotApiObject) => {
   return pickObjectProps(objectCssProps, textCssProps)
 }
 
-export const adaptPageComponentsToCssClassDefinitions = (
+const adaptPageComponentsToCssClassDefinitions = (
   penpotFile: PenpotApiFile,
   options: { pageId: string },
-): CSSClassDefinition[] => {
+): PageComponentAssets => {
   const pages = penpotFile.data.pagesIndex ?? {}
   const page = pages[options.pageId]
   const pageObjects = Object.values(page.objects)
@@ -44,14 +44,13 @@ export const adaptPageComponentsToCssClassDefinitions = (
     .filter(isComponent)
     .map((object) => getObjectShapesFromPage(object, page))
 
-  const cssClassDefinitions = []
+  const cssClassDefinitions: CSSClassDefinition[] = []
   for (const component of components) {
     for (const objectId in component.objects) {
       const object = component.objects[objectId]
       if (object.type === 'text') {
         const cssProps = getTextObjectCssProps(object)
         cssClassDefinitions.push({
-          scope: page.name,
           name: object.name,
           cssProps,
         })
@@ -59,5 +58,10 @@ export const adaptPageComponentsToCssClassDefinitions = (
     }
   }
 
-  return cssClassDefinitions
+  return {
+    scope: page.name,
+    pageComponents: cssClassDefinitions,
+  }
 }
+
+export default adaptPageComponentsToCssClassDefinitions

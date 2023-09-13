@@ -1,11 +1,9 @@
 export interface CSSClassDefinition {
-  scope: string
   name: string
   cssProps: Record<string, string>
 }
 
 export interface CSSCustomPropertyDefinition {
-  scope: string
   name: string
   value: string
 }
@@ -20,6 +18,7 @@ export interface FontsSummary {
 }
 
 interface BaseAssets {
+  scope: string
   colors?: never
   typographies?: never
   typographiesSummary?: never

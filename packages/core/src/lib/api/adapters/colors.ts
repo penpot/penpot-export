@@ -1,5 +1,6 @@
-import { PenpotApiFile } from '../../api'
-import { CSSCustomPropertyDefinition } from '../../types'
+import { CSSCustomPropertyDefinition, ColorAssets } from '../../types'
+
+import { PenpotApiFile } from '../types'
 
 const toHexQuartet = (hexTriplet: string, alpha: number = 1) => {
   const alphaChannel = Math.trunc(alpha * 0x100) - 1
@@ -20,19 +21,21 @@ const toHexQuartet = (hexTriplet: string, alpha: number = 1) => {
   return ('#' + RR + GG + BB + AA).toLowerCase()
 }
 
-export const adaptColorsToCssVariables = (
-  penpotFile: PenpotApiFile,
-): CSSCustomPropertyDefinition[] => {
+const adaptColorsToCssVariables = (penpotFile: PenpotApiFile): ColorAssets => {
   const fileName = penpotFile.name
   const colors = Object.values(penpotFile.data.colors ?? {})
 
-  const cssPropsEntries = colors.map((color) => {
+  const cssPropsEntries = colors.map<CSSCustomPropertyDefinition>((color) => {
     return {
-      scope: fileName,
       name: color.name,
       value: toHexQuartet(color.color, color.opacity),
     }
   })
 
-  return cssPropsEntries
+  return {
+    scope: fileName,
+    colors: cssPropsEntries,
+  }
 }
+
+export default adaptColorsToCssVariables
