@@ -17,13 +17,13 @@ const config = {
       colors: [
         {
           format: 'json',
-          output: './design-tokens/colors.json', // 👈 Path where your JSON file should be generated.
+          output: './design-tokens/colors.tokens.json', // 👈 Path where your JSON file should be generated.
         },
       ],
       typographies: [
         {
           format: 'json',
-          output: './design-tokens/typographies.json', // 👈 Path where your JSON file should be generated.
+          output: './design-tokens/typographies.tokens.json', // 👈 Path where your JSON file should be generated.
         },
       ],
     },
