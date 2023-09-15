@@ -1,7 +1,7 @@
 {
   "name": "@penpot-export/cli",
   "version": "0.0.0",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "main": "dist/bin/index.js",
   "files": [
     "dist"
