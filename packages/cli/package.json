@@ -10,6 +10,7 @@
     "penpot-export": "./dist/bin/index.js"
   },
   "scripts": {
+    "prepack": "npm run build",
     "build": "tsc",
     "format": "prettier -w .",
     "dev": "tsc-watch"
