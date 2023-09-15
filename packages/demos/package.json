@@ -1,7 +1,7 @@
 {
   "name": "demos",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0-beta.0",
   "scripts": {
     "generate-css": "cd demo-css && penpot-export",
     "generate-json": "cd demo-json && penpot-export",
@@ -9,7 +9,7 @@
     "generate-all": "npm run generate-css && npm run generate-json && npm run generate-scss"
   },
   "dependencies": {
-    "@penpot-export/cli": "0.0.0",
+    "@penpot-export/cli": "0.1.0-beta.0",
     "sass": "^1.67.0"
   },
   "devDependencies": {
