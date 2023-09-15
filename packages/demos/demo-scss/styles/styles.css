@@ -1,0 +1,192 @@
+.patch {
+  display: inline-block;
+  vertical-align: bottom;
+  margin-right: 0.3em;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background-color: inherit;
+}
+.patch.bg-Primary_100 {
+  background-color: #e9fff7;
+}
+.patch.bg-Primary_200 {
+  background-color: #caffe9;
+}
+.patch.bg-Primary_300 {
+  background-color: #9affd9;
+}
+.patch.bg-Primary_400 {
+  background-color: #5afbc7;
+}
+.patch.bg-Primary_500 {
+  background-color: #31efb8;
+}
+.patch.bg-Primary_600 {
+  background-color: #00d59a;
+}
+.patch.bg-Primary_700 {
+  background-color: #00ae7f;
+}
+.patch.bg-Primary_800 {
+  background-color: #008b69;
+}
+.patch.bg-Primary_900 {
+  background-color: #006e54;
+}
+.patch.bg-Secondary_100 {
+  background-color: #f9f5ff;
+}
+.patch.bg-Secondary_200 {
+  background-color: #f0e8ff;
+}
+.patch.bg-Secondary_300 {
+  background-color: #e4d4ff;
+}
+.patch.bg-Secondary_400 {
+  background-color: #cfb3ff;
+}
+.patch.bg-Secondary_500 {
+  background-color: #bf98fe;
+}
+.patch.bg-Secondary_600 {
+  background-color: #9453f9;
+}
+.patch.bg-Secondary_700 {
+  background-color: #7d30ed;
+}
+.patch.bg-Secondary_800 {
+  background-color: #691fd1;
+}
+.patch.bg-Secondary_900 {
+  background-color: #5b1faa;
+}
+.patch.bg-Neutral_100 {
+  background-color: #f7f8f9;
+}
+.patch.bg-Neutral_200 {
+  background-color: #f1f2f4;
+}
+.patch.bg-Neutral_300 {
+  background-color: #dcdfe4;
+}
+.patch.bg-Neutral_400 {
+  background-color: #b3b9c4;
+}
+.patch.bg-Neutral_500 {
+  background-color: #8590a2;
+}
+.patch.bg-Neutral_600 {
+  background-color: #758195;
+}
+.patch.bg-Neutral_700 {
+  background-color: #626f86;
+}
+.patch.bg-Neutral_800 {
+  background-color: #44546f;
+}
+.patch.bg-Neutral_900 {
+  background-color: #172b4d;
+}
+
+.Body_Large {
+  line-height: 1.4;
+  font-style: normal;
+  text-transform: none;
+  font-weight: 400;
+  font-size: 21px;
+  letter-spacing: 0px;
+  font-family: "Work Sans";
+}
+
+.Body_Medium {
+  line-height: 1.4;
+  font-style: normal;
+  text-transform: none;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0px;
+  font-family: "Work Sans";
+}
+
+.Body_Small {
+  line-height: 1.4;
+  font-style: normal;
+  text-transform: none;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0px;
+  font-family: "Work Sans";
+}
+
+.Body_Small_Uppercase {
+  line-height: 1.4;
+  font-style: normal;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-family: "Work Sans";
+}
+
+.Title_Large {
+  line-height: 1.2;
+  font-style: normal;
+  text-transform: none;
+  font-weight: 700;
+  font-size: 45px;
+  letter-spacing: 0px;
+  font-family: "Work Sans";
+}
+
+.Title_Medium {
+  line-height: 1.2;
+  font-style: normal;
+  text-transform: none;
+  font-weight: 700;
+  font-size: 37px;
+  letter-spacing: 0px;
+  font-family: "Work Sans";
+}
+
+.Title_Small {
+  line-height: 1.2;
+  font-style: normal;
+  text-transform: none;
+  font-weight: 700;
+  font-size: 31px;
+  letter-spacing: 0px;
+  font-family: "Work Sans";
+}
+
+@media (min-width: 768px) {
+  .Title_Large {
+    line-height: 1.2;
+    font-style: normal;
+    text-transform: none;
+    font-weight: 700;
+    font-size: 77px;
+    letter-spacing: 0px;
+    font-family: "Work Sans";
+  }
+  .Title_Medium {
+    line-height: 1.2;
+    font-style: normal;
+    text-transform: none;
+    font-weight: 700;
+    font-size: 54px;
+    letter-spacing: 0px;
+    font-family: "Work Sans";
+  }
+  .Title_Small {
+    line-height: 1.2;
+    font-style: normal;
+    text-transform: none;
+    font-weight: 700;
+    font-size: 31px;
+    letter-spacing: 0px;
+    font-family: "Work Sans";
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

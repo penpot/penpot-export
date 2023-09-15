@@ -1,0 +1,79 @@
+@use "sass:list";
+@use "sass:map";
+@use './variables/colors.scss';
+@use './variables/typographies.scss';
+
+
+@mixin patchColor($name, $color) {
+  &.bg-#{$name} {
+    background-color: $color;
+  }
+}
+
+.patch {
+  display: inline-block;
+  vertical-align: bottom;
+  margin-right: .3em;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background-color: inherit;
+
+  @include patchColor('Primary_100', colors.$Primary_100);
+  @include patchColor('Primary_200', colors.$Primary_200);
+  @include patchColor('Primary_300', colors.$Primary_300);
+  @include patchColor('Primary_400', colors.$Primary_400);
+  @include patchColor('Primary_500', colors.$Primary_500);
+  @include patchColor('Primary_600', colors.$Primary_600);
+  @include patchColor('Primary_700', colors.$Primary_700);
+  @include patchColor('Primary_800', colors.$Primary_800);
+  @include patchColor('Primary_900', colors.$Primary_900);
+  @include patchColor('Secondary_100', colors.$Secondary_100);
+  @include patchColor('Secondary_200', colors.$Secondary_200);
+  @include patchColor('Secondary_300', colors.$Secondary_300);
+  @include patchColor('Secondary_400', colors.$Secondary_400);
+  @include patchColor('Secondary_500', colors.$Secondary_500);
+  @include patchColor('Secondary_600', colors.$Secondary_600);
+  @include patchColor('Secondary_700', colors.$Secondary_700);
+  @include patchColor('Secondary_800', colors.$Secondary_800);
+  @include patchColor('Secondary_900', colors.$Secondary_900);
+  @include patchColor('Neutral_100', colors.$Neutral_100);
+  @include patchColor('Neutral_200', colors.$Neutral_200);
+  @include patchColor('Neutral_300', colors.$Neutral_300);
+  @include patchColor('Neutral_400', colors.$Neutral_400);
+  @include patchColor('Neutral_500', colors.$Neutral_500);
+  @include patchColor('Neutral_600', colors.$Neutral_600);
+  @include patchColor('Neutral_700', colors.$Neutral_700);
+  @include patchColor('Neutral_800', colors.$Neutral_800);
+  @include patchColor('Neutral_900', colors.$Neutral_900);
+}
+
+
+$breakpoint: 768px;
+@mixin desktop() {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+@mixin typographyClass($name, $typographyMap) {
+  .#{$name} {
+    @each $prop, $value in $typographyMap {
+      #{$prop}: $value;
+    }
+  }
+}
+
+@include typographyClass('Body_Large', typographies.$Body_Large);
+@include typographyClass('Body_Medium', typographies.$Body_Medium);
+@include typographyClass('Body_Small', typographies.$Body_Small);
+@include typographyClass('Body_Small_Uppercase', typographies.$Body_Small_Uppercase);
+
+@include typographyClass('Title_Large', typographies.$📱_Title_Large);
+@include typographyClass('Title_Medium', typographies.$📱_Title_Medium);
+@include typographyClass('Title_Small', typographies.$📱_Title_Small);
+
+@include desktop() {
+  @include typographyClass('Title_Large', typographies.$🖥_Title_Large);
+  @include typographyClass('Title_Medium', typographies.$🖥_Title_Medium);
+  @include typographyClass('Title_Small', typographies.$🖥_Title_Small);
+}

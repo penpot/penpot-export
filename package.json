@@ -8,6 +8,6 @@
     "dev": "npm run dev -w @penpot-export/cli",
     "build": "npm run build -w @penpot-export/core -w @penpot-export/cli",
     "test": "npm run test --workspaces --if-present",
-    "demo": "npm run generate-css -w demo"
+    "demo": "npm run generate-all -w demos"
   }
 }
