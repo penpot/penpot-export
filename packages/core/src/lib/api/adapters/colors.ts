@@ -1,5 +1,6 @@
 import { CSSCustomPropertyDefinition, ColorAssets } from '../../types'
 
+import { compareByName } from '../helpers'
 import { PenpotApiFile } from '../types'
 
 const toHexQuartet = (hexTriplet: string, alpha: number = 1) => {
@@ -24,6 +25,8 @@ const toHexQuartet = (hexTriplet: string, alpha: number = 1) => {
 const adaptColorsToCssVariables = (penpotFile: PenpotApiFile): ColorAssets => {
   const fileName = penpotFile.name
   const colors = Object.values(penpotFile.data.colors ?? {})
+    .slice()
+    .sort(compareByName)
 
   const cssPropsEntries = colors.map<CSSCustomPropertyDefinition>((color) => {
     return {

@@ -1,8 +1,19 @@
-import { PenpotApiComponent, PenpotApiObject, PenpotApiPage } from './types'
+import {
+  PenpotApiColor,
+  PenpotApiComponent,
+  PenpotApiObject,
+  PenpotApiPage,
+  PenpotApiTypography,
+} from './types'
 
 export function isComponent(object: PenpotApiObject) {
   return object.componentRoot === true
 }
+
+export const compareByName = (
+  assetA: PenpotApiColor | PenpotApiTypography,
+  assetB: PenpotApiColor | PenpotApiTypography,
+) => (assetA.name > assetB.name ? 1 : -1)
 
 export function getObjectShapesFromPage(
   object: PenpotApiObject,

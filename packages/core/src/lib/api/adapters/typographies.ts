@@ -1,5 +1,6 @@
 import { CSSClassDefinition, FontsSummary, TypographyAssets } from '../../types'
 
+import { compareByName } from '../helpers'
 import { PenpotApiTypography, CssTextProperty, PenpotApiFile } from '../types'
 
 const mapTypographyAssetCssProps = (
@@ -68,6 +69,8 @@ const summarizeTypographies = (
 const adaptTypographies = (penpotFile: PenpotApiFile): TypographyAssets => {
   const fileName = penpotFile.name
   const typographies = Object.values(penpotFile.data.typographies ?? {})
+    .slice()
+    .sort(compareByName)
 
   return {
     scope: fileName,
