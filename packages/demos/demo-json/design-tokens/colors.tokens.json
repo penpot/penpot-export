@@ -1,49 +1,9 @@
 {
-  "$description": "EasyFest: Design System & Landing page",
-  "Primary_900": {
-    "$description": "Primary 900",
-    "$type": "color",
-    "$value": "#006e54ff"
-  },
-  "Secondary_500": {
-    "$description": "Secondary 500",
-    "$type": "color",
-    "$value": "#bf98feff"
-  },
-  "Secondary_400": {
-    "$description": "Secondary 400",
-    "$type": "color",
-    "$value": "#cfb3ffff"
-  },
+  "$description": "penpot-export: demo",
   "Neutral_100": {
     "$description": "Neutral 100",
     "$type": "color",
     "$value": "#f7f8f9ff"
-  },
-  "Neutral_500": {
-    "$description": "Neutral 500",
-    "$type": "color",
-    "$value": "#8590a2ff"
-  },
-  "Primary_200": {
-    "$description": "Primary 200",
-    "$type": "color",
-    "$value": "#caffe9ff"
-  },
-  "Secondary_800": {
-    "$description": "Secondary 800",
-    "$type": "color",
-    "$value": "#691fd1ff"
-  },
-  "Primary_100": {
-    "$description": "Primary 100",
-    "$type": "color",
-    "$value": "#e9fff7ff"
-  },
-  "Secondary_200": {
-    "$description": "Secondary 200",
-    "$type": "color",
-    "$value": "#f0e8ffff"
   },
   "Neutral_200": {
     "$description": "Neutral 200",
@@ -55,25 +15,45 @@
     "$type": "color",
     "$value": "#dcdfe4ff"
   },
-  "Neutral_700": {
-    "$description": "Neutral 700",
-    "$type": "color",
-    "$value": "#626f86ff"
-  },
   "Neutral_400": {
     "$description": "Neutral 400",
     "$type": "color",
     "$value": "#b3b9c4ff"
+  },
+  "Neutral_500": {
+    "$description": "Neutral 500",
+    "$type": "color",
+    "$value": "#8590a2ff"
   },
   "Neutral_600": {
     "$description": "Neutral 600",
     "$type": "color",
     "$value": "#758195ff"
   },
-  "Secondary_600": {
-    "$description": "Secondary 600",
+  "Neutral_700": {
+    "$description": "Neutral 700",
     "$type": "color",
-    "$value": "#9453f9ff"
+    "$value": "#626f86ff"
+  },
+  "Neutral_800": {
+    "$description": "Neutral 800",
+    "$type": "color",
+    "$value": "#44546fff"
+  },
+  "Neutral_900": {
+    "$description": "Neutral 900",
+    "$type": "color",
+    "$value": "#172b4dff"
+  },
+  "Primary_100": {
+    "$description": "Primary 100",
+    "$type": "color",
+    "$value": "#e9fff7ff"
+  },
+  "Primary_200": {
+    "$description": "Primary 200",
+    "$type": "color",
+    "$value": "#caffe9ff"
   },
   "Primary_300": {
     "$description": "Primary 300",
@@ -85,54 +65,74 @@
     "$type": "color",
     "$value": "#5afbc7ff"
   },
-  "Secondary_300": {
-    "$description": "Secondary 300",
+  "Primary_500": {
+    "$description": "Primary 500",
     "$type": "color",
-    "$value": "#e4d4ffff"
+    "$value": "#31efb8ff"
   },
-  "Primary_800": {
-    "$description": "Primary 800",
+  "Primary_600": {
+    "$description": "Primary 600",
     "$type": "color",
-    "$value": "#008b69ff"
-  },
-  "Neutral_900": {
-    "$description": "Neutral 900",
-    "$type": "color",
-    "$value": "#172b4dff"
-  },
-  "Neutral_800": {
-    "$description": "Neutral 800",
-    "$type": "color",
-    "$value": "#44546fff"
-  },
-  "Secondary_900": {
-    "$description": "Secondary 900",
-    "$type": "color",
-    "$value": "#5b1faaff"
+    "$value": "#00d59aff"
   },
   "Primary_700": {
     "$description": "Primary 700",
     "$type": "color",
     "$value": "#00ae7fff"
   },
-  "Secondary_700": {
-    "$description": "Secondary 700",
+  "Primary_800": {
+    "$description": "Primary 800",
     "$type": "color",
-    "$value": "#7d30edff"
+    "$value": "#008b69ff"
   },
-  "Primary_500": {
-    "$description": "Primary 500",
+  "Primary_900": {
+    "$description": "Primary 900",
     "$type": "color",
-    "$value": "#31efb8ff"
+    "$value": "#006e54ff"
   },
   "Secondary_100": {
     "$description": "Secondary 100",
     "$type": "color",
     "$value": "#f9f5ffff"
   },
-  "Primary_600": {
-    "$description": "Primary 600",
+  "Secondary_200": {
+    "$description": "Secondary 200",
     "$type": "color",
-    "$value": "#00d59aff"
+    "$value": "#f0e8ffff"
+  },
+  "Secondary_300": {
+    "$description": "Secondary 300",
+    "$type": "color",
+    "$value": "#e4d4ffff"
+  },
+  "Secondary_400": {
+    "$description": "Secondary 400",
+    "$type": "color",
+    "$value": "#cfb3ffff"
+  },
+  "Secondary_500": {
+    "$description": "Secondary 500",
+    "$type": "color",
+    "$value": "#bf98feff"
+  },
+  "Secondary_600": {
+    "$description": "Secondary 600",
+    "$type": "color",
+    "$value": "#9453f9ff"
+  },
+  "Secondary_700": {
+    "$description": "Secondary 700",
+    "$type": "color",
+    "$value": "#7d30edff"
+  },
+  "Secondary_800": {
+    "$description": "Secondary 800",
+    "$type": "color",
+    "$value": "#691fd1ff"
+  },
+  "Secondary_900": {
+    "$description": "Secondary 900",
+    "$type": "color",
+    "$value": "#5b1faaff"
   }
 }

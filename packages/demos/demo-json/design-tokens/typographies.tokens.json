@@ -1,49 +1,5 @@
 {
-  "$description": "EasyFest: Design System & Landing page",
-  "🖥_Title_Medium": {
-    "$description": "🖥 Title Medium",
-    "$type": "typography",
-    "$value": {
-      "lineHeight": 1.2000000000000002,
-      "fontWeight": 700,
-      "fontSize": "54px",
-      "letterSpacing": "0px",
-      "fontFamily": "Work Sans"
-    }
-  },
-  "📱_Title_Medium": {
-    "$description": "📱 Title Medium",
-    "$type": "typography",
-    "$value": {
-      "lineHeight": 1.2000000000000002,
-      "fontWeight": 700,
-      "fontSize": "37px",
-      "letterSpacing": "0px",
-      "fontFamily": "Work Sans"
-    }
-  },
-  "Body_Small_Uppercase": {
-    "$description": "Body Small Uppercase",
-    "$type": "typography",
-    "$value": {
-      "lineHeight": 1.4,
-      "fontWeight": 400,
-      "fontSize": "13px",
-      "letterSpacing": "1px",
-      "fontFamily": "Work Sans"
-    }
-  },
-  "🖥_Title_Large": {
-    "$description": "🖥 Title Large",
-    "$type": "typography",
-    "$value": {
-      "lineHeight": 1.2,
-      "fontWeight": 700,
-      "fontSize": "77px",
-      "letterSpacing": "0px",
-      "fontFamily": "Work Sans"
-    }
-  },
+  "$description": "penpot-export: demo",
   "Body_Large": {
     "$description": "Body Large",
     "$type": "typography",
@@ -55,24 +11,13 @@
       "fontFamily": "Work Sans"
     }
   },
-  "📱_Title_Small": {
-    "$description": "📱 Title Small",
+  "Body_Medium": {
+    "$description": "Body Medium",
     "$type": "typography",
     "$value": {
-      "lineHeight": 1.2000000000000002,
-      "fontWeight": 700,
-      "fontSize": "31px",
-      "letterSpacing": "0px",
-      "fontFamily": "Work Sans"
-    }
-  },
-  "🖥_Title_Small": {
-    "$description": "🖥 Title Small",
-    "$type": "typography",
-    "$value": {
-      "lineHeight": 1.2,
-      "fontWeight": 700,
-      "fontSize": "31px",
+      "lineHeight": 1.4,
+      "fontWeight": 400,
+      "fontSize": "18px",
       "letterSpacing": "0px",
       "fontFamily": "Work Sans"
     }
@@ -88,6 +33,17 @@
       "fontFamily": "Work Sans"
     }
   },
+  "Body_Small_Uppercase": {
+    "$description": "Body Small Uppercase",
+    "$type": "typography",
+    "$value": {
+      "lineHeight": 1.4,
+      "fontWeight": 400,
+      "fontSize": "13px",
+      "letterSpacing": "1px",
+      "fontFamily": "Work Sans"
+    }
+  },
   "📱_Title_Large": {
     "$description": "📱 Title Large",
     "$type": "typography",
@@ -99,13 +55,57 @@
       "fontFamily": "Work Sans"
     }
   },
-  "Body_Medium": {
-    "$description": "Body Medium",
+  "📱_Title_Medium": {
+    "$description": "📱 Title Medium",
     "$type": "typography",
     "$value": {
-      "lineHeight": 1.4,
-      "fontWeight": 400,
-      "fontSize": "18px",
+      "lineHeight": 1.2000000000000002,
+      "fontWeight": 700,
+      "fontSize": "37px",
+      "letterSpacing": "0px",
+      "fontFamily": "Work Sans"
+    }
+  },
+  "📱_Title_Small": {
+    "$description": "📱 Title Small",
+    "$type": "typography",
+    "$value": {
+      "lineHeight": 1.2000000000000002,
+      "fontWeight": 700,
+      "fontSize": "31px",
+      "letterSpacing": "0px",
+      "fontFamily": "Work Sans"
+    }
+  },
+  "🖥_Title_Large": {
+    "$description": "🖥 Title Large",
+    "$type": "typography",
+    "$value": {
+      "lineHeight": 1.2,
+      "fontWeight": 700,
+      "fontSize": "77px",
+      "letterSpacing": "0px",
+      "fontFamily": "Work Sans"
+    }
+  },
+  "🖥_Title_Medium": {
+    "$description": "🖥 Title Medium",
+    "$type": "typography",
+    "$value": {
+      "lineHeight": 1.2000000000000002,
+      "fontWeight": 700,
+      "fontSize": "54px",
+      "letterSpacing": "0px",
+      "fontFamily": "Work Sans"
+    }
+  },
+  "🖥_Title_Small": {
+    "$description": "🖥 Title Small",
+    "$type": "typography",
+    "$value": {
+      "lineHeight": 1.2,
+      "fontWeight": 700,
+      "fontSize": "31px",
       "letterSpacing": "0px",
       "fontFamily": "Work Sans"
     }

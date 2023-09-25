@@ -1,47 +1,7 @@
 // These generated typography declarations rely on the given font being already available in your front end code.
 // There are 0 custom fonts and 1 fonts from Google Fonts.
 // You can choose to load the latter from the Google Fonts CSS API in a HTML document using:
-// <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work%20Sans:700,400">
-
-$🖥_Title_Medium: (
-  "line-height": 1.2000000000000002,
-  "font-style": normal,
-  "text-transform": none,
-  "font-weight": 700,
-  "font-size": 54px,
-  "letter-spacing": 0px,
-  "font-family": "Work Sans",
-);
-
-$📱_Title_Medium: (
-  "line-height": 1.2000000000000002,
-  "font-style": normal,
-  "text-transform": none,
-  "font-weight": 700,
-  "font-size": 37px,
-  "letter-spacing": 0px,
-  "font-family": "Work Sans",
-);
-
-$Body_Small_Uppercase: (
-  "line-height": 1.4,
-  "font-style": normal,
-  "text-transform": uppercase,
-  "font-weight": 400,
-  "font-size": 13px,
-  "letter-spacing": 1px,
-  "font-family": "Work Sans",
-);
-
-$🖥_Title_Large: (
-  "line-height": 1.2,
-  "font-style": normal,
-  "text-transform": none,
-  "font-weight": 700,
-  "font-size": 77px,
-  "letter-spacing": 0px,
-  "font-family": "Work Sans",
-);
+// <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work%20Sans:400,700">
 
 $Body_Large: (
   "line-height": 1.4,
@@ -53,22 +13,12 @@ $Body_Large: (
   "font-family": "Work Sans",
 );
 
-$📱_Title_Small: (
-  "line-height": 1.2000000000000002,
+$Body_Medium: (
+  "line-height": 1.4,
   "font-style": normal,
   "text-transform": none,
-  "font-weight": 700,
-  "font-size": 31px,
-  "letter-spacing": 0px,
-  "font-family": "Work Sans",
-);
-
-$🖥_Title_Small: (
-  "line-height": 1.2,
-  "font-style": normal,
-  "text-transform": none,
-  "font-weight": 700,
-  "font-size": 31px,
+  "font-weight": 400,
+  "font-size": 18px,
   "letter-spacing": 0px,
   "font-family": "Work Sans",
 );
@@ -83,6 +33,16 @@ $Body_Small: (
   "font-family": "Work Sans",
 );
 
+$Body_Small_Uppercase: (
+  "line-height": 1.4,
+  "font-style": normal,
+  "text-transform": uppercase,
+  "font-weight": 400,
+  "font-size": 13px,
+  "letter-spacing": 1px,
+  "font-family": "Work Sans",
+);
+
 $📱_Title_Large: (
   "line-height": 1.2,
   "font-style": normal,
@@ -93,12 +53,52 @@ $📱_Title_Large: (
   "font-family": "Work Sans",
 );
 
-$Body_Medium: (
-  "line-height": 1.4,
+$📱_Title_Medium: (
+  "line-height": 1.2000000000000002,
   "font-style": normal,
   "text-transform": none,
-  "font-weight": 400,
-  "font-size": 18px,
+  "font-weight": 700,
+  "font-size": 37px,
+  "letter-spacing": 0px,
+  "font-family": "Work Sans",
+);
+
+$📱_Title_Small: (
+  "line-height": 1.2000000000000002,
+  "font-style": normal,
+  "text-transform": none,
+  "font-weight": 700,
+  "font-size": 31px,
+  "letter-spacing": 0px,
+  "font-family": "Work Sans",
+);
+
+$🖥_Title_Large: (
+  "line-height": 1.2,
+  "font-style": normal,
+  "text-transform": none,
+  "font-weight": 700,
+  "font-size": 77px,
+  "letter-spacing": 0px,
+  "font-family": "Work Sans",
+);
+
+$🖥_Title_Medium: (
+  "line-height": 1.2000000000000002,
+  "font-style": normal,
+  "text-transform": none,
+  "font-weight": 700,
+  "font-size": 54px,
+  "letter-spacing": 0px,
+  "font-family": "Work Sans",
+);
+
+$🖥_Title_Small: (
+  "line-height": 1.2,
+  "font-style": normal,
+  "text-transform": none,
+  "font-weight": 700,
+  "font-size": 31px,
   "letter-spacing": 0px,
   "font-family": "Work Sans",
 );
