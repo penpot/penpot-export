@@ -80,6 +80,20 @@ describe('Penpot URL parser', () => {
 
         assert.deepStrictEqual(parsePenpotUrl(input), expect)
       })
+
+      it('parses it with page id and extra parameters', () => {
+        const input =
+          'https://design.penpot.app/#/workspace/da58b520-6ba3-11eb-9ba1-03f8ac143bbf/187ee84f-c56d-8067-8002-5f0222d9c181?page-id=187ee84f-c56d-8067-8002-5f0223a68847&layout=assets'
+
+        const expect = {
+          instance: 'https://design.penpot.app/',
+          workspaceId: 'da58b520-6ba3-11eb-9ba1-03f8ac143bbf',
+          fileId: '187ee84f-c56d-8067-8002-5f0222d9c181',
+          pageId: '187ee84f-c56d-8067-8002-5f0223a68847',
+        }
+
+        assert.deepStrictEqual(parsePenpotUrl(input), expect)
+      })
     })
 
     describe('when provided a self-hosted Penpot URL', () => {

@@ -14,7 +14,7 @@ export function parsePenpotUrl(url: string) {
   }
 
   const [workspaceId, fileId, pageId] = parsedUrl.hash
-    .split(/[\/?=]/)
+    .split(/[\/?=&]/)
     .filter((match) => UUID_RE.test(match))
 
   return {
