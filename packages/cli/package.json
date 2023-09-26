@@ -12,6 +12,8 @@
   "scripts": {
     "prepack": "npm run build",
     "build": "tsc",
+    "pretest": "npm run build",
+    "test": "node --test",
     "format": "prettier -w .",
     "dev": "tsc-watch"
   },
