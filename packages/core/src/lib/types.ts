@@ -41,3 +41,5 @@ export type PenpotExportAssets =
   | ColorAssets
   | TypographyAssets
   | PageComponentAssets
+
+export { UserConfig, UserFileConfig } from './config'
