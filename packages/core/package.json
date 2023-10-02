@@ -1,6 +1,6 @@
 {
   "name": "@penpot-export/core",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "Apache-2.0",
   "description": "penpot-export is a tool designed to export your design tokens created in Penpot into ready-to-use code or parseable data files.",
   "main": "dist/lib/index.js",

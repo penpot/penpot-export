@@ -1,6 +1,6 @@
 {
   "name": "@penpot-export/cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "Apache-2.0",
   "description": "penpot-export is a tool designed to export your design tokens created in Penpot into ready-to-use code or parseable data files.",
   "files": [
@@ -18,7 +18,7 @@
     "dev": "tsc-watch"
   },
   "dependencies": {
-    "@penpot-export/core": "0.1.1",
+    "@penpot-export/core": "0.1.2",
     "prettier": "^3.0.2"
   },
   "devDependencies": {
