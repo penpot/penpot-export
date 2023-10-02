@@ -1,6 +1,6 @@
 {
   "name": "@penpot-export/cli",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0",
   "license": "Apache-2.0",
   "main": "dist/bin/index.js",
   "files": [
@@ -18,7 +18,7 @@
     "dev": "tsc-watch"
   },
   "dependencies": {
-    "@penpot-export/core": "0.1.0-beta.1",
+    "@penpot-export/core": "0.1.0",
     "prettier": "^3.0.2"
   },
   "devDependencies": {
