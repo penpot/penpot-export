@@ -2,7 +2,7 @@
   "name": "@penpot-export/cli",
   "version": "0.1.0",
   "license": "Apache-2.0",
-  "main": "dist/bin/index.js",
+  "description": "penpot-export is a tool designed to export your design tokens created in Penpot into ready-to-use code or parseable data files.",
   "files": [
     "dist"
   ],
@@ -27,5 +27,23 @@
     "ts-node": "^10.9.1",
     "tsc-watch": "^6.0.4",
     "typescript": "^5.1.6"
-  }
+  },
+  "homepage": "https://github.com/penpot/penpot-export#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/penpot/penpot-export.git"
+  },
+  "bugs": {
+    "url": "https://github.com/penpot/penpot-export/issues"
+  },
+  "keywords": [
+    "Penpot",
+    "export",
+    "design",
+    "design tokens",
+    "W3C Design Tokens Format",
+    "typographies",
+    "colors",
+    "cli"
+  ]
 }
