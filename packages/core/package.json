@@ -17,12 +17,12 @@
   },
   "dependencies": {
     "node-fetch": "2",
-    "prettier": "^3.0.2",
     "zod": "^3.22.2"
   },
   "devDependencies": {
     "@types/node": "^20.5.0",
     "@types/node-fetch": "2",
+    "prettier": "^3.0.2",
     "ts-node": "^10.9.1",
     "tsc-watch": "^6.0.4",
     "typescript": "^5.1.6"
