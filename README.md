@@ -76,13 +76,13 @@ const config = {
       colors: [
         {
           format: 'scss',
-          output: 'src/styles/colors.css', // 👈 Path where your colors SCSS file should be generated.
+          output: 'src/styles/colors.scss', // 👈 Path where your colors SCSS file should be generated.
         },
       ],
       typographies: [
         {
           format: 'json',
-          output: 'src/styles/typographies.css', // 👈 Path where your typographies JSON file should be generated.
+          output: 'src/styles/typographies.json', // 👈 Path where your typographies JSON file should be generated.
         },
       ],
     },
